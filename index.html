@@ -17,7 +17,8 @@
       --accent: #d7a14a;
       --accent-2: #f1c27a;
       --ok: #8dd7a5;
-      --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+      --line-soft: rgba(255, 255, 255, 0.055);
       --radius: 24px;
       --radius-sm: 18px;
       --maxw: 1180px;
@@ -116,7 +117,7 @@
 
     .hero {
       position: relative;
-      padding: 78px 0 44px;
+      padding: 84px 0 56px;
     }
 
     .hero::before {
@@ -138,14 +139,14 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
+      grid-template-columns: 1fr;
+      gap: 0;
       align-items: stretch;
     }
 
     .glass {
       background: var(--panel);
-      border: 1px solid var(--line);
+      border: 1px solid var(--line-soft);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       backdrop-filter: blur(16px);
@@ -155,49 +156,73 @@
       padding: 42px;
     }
 
-    .hero-intro {
+    .hero-split {
       display: grid;
-      grid-template-columns: minmax(108px, 140px) 1fr;
-      gap: clamp(18px, 3.5vw, 30px);
-      align-items: start;
-      margin-bottom: 6px;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 42px);
+      align-items: stretch;
     }
 
-    .hero-portrait-frame {
-      overflow: hidden;
+    .hero-photo-col {
+      position: relative;
       border-radius: 22px;
-      padding: 3px;
-      background: linear-gradient(
-        145deg,
-        rgba(215, 161, 74, 0.65),
-        rgba(241, 194, 122, 0.25),
-        rgba(255, 255, 255, 0.1)
-      );
-      box-shadow:
-        0 0 0 1px rgba(215, 161, 74, 0.2),
-        0 20px 50px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+      border: 1px solid var(--line-soft);
+      background: rgba(0, 0, 0, 0.28);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+      min-height: 0;
     }
 
-    .hero-portrait-frame img {
+    .hero-photo-col img {
       display: block;
       width: 100%;
-      height: auto;
-      aspect-ratio: 1;
+      height: 100%;
+      min-height: 280px;
       object-fit: cover;
-      object-position: 54% 44%;
-      transform: scale(1.1);
-      transform-origin: 52% 38%;
-      border-radius: 19px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.2);
+      object-position: center 18%;
     }
 
-    .hero-intro-copy {
+    .hero-copy-col {
       min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-copy-col .badge {
+      align-self: center;
+    }
+
+    .hero-copy-col .hero-actions {
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-copy-col .hero-actions-row {
+      justify-content: center;
+    }
+
+    .hero-copy-col .hero-actions-sub {
+      justify-content: center;
+    }
+
+    .hero-copy-col h1.hero-heading-full {
+      text-align: center;
+    }
+
+    .hero-copy-col .hero-text {
+      text-align: center;
+    }
+
+    .hero-copy-col .stats-row {
+      width: 100%;
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .hero-heading-full {
-      margin-top: clamp(10px, 2vw, 20px);
+      margin-top: 0;
       margin-bottom: 18px;
     }
 
@@ -225,13 +250,30 @@
     h1.hero-heading-full {
       max-width: none;
       width: 100%;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    h1.hero-heading-full .h1-line {
+      display: block;
     }
 
     .hero-text {
-      font-size: 18px;
+      font-size: 17px;
       color: var(--muted);
-      max-width: 700px;
-      margin: 0 0 26px;
+      max-width: none;
+      width: 100%;
+      margin: 0 0 28px;
+      line-height: 1.65;
+    }
+
+    .hero-text .hero-line {
+      display: block;
+      margin-bottom: 0.55em;
+    }
+
+    .hero-text .hero-line:last-child {
+      margin-bottom: 0;
     }
 
     .hero-actions {
@@ -251,8 +293,30 @@
       gap: 12px;
     }
 
-    .hero-actions-social {
+    .hero-actions-sub {
+      margin-top: 4px;
+      display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      align-items: center;
+      gap: 10px 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .hero-actions-sub a {
+      color: var(--accent-2);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .hero-actions-sub a:hover {
+      color: var(--text);
+    }
+
+    .hero-actions-sub .dot {
+      opacity: 0.45;
+      user-select: none;
     }
 
     .btn {
@@ -323,98 +387,72 @@
     .stats-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      gap: clamp(18px, 2.5vw, 26px);
       align-items: stretch;
     }
 
     .stat {
-      padding: 18px 14px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 22px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--line-soft);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      min-height: 108px;
+      min-height: 112px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.14);
     }
 
     .stat strong {
       display: block;
-      font-size: clamp(18px, 2.2vw, 23px);
-      margin-bottom: 8px;
+      font-size: clamp(22px, 2.8vw, 30px);
+      margin-bottom: 6px;
       text-align: center;
-      line-height: 1.2;
+      line-height: 1.15;
       max-width: 100%;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
     .stat span {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 12px;
       text-align: center;
-      line-height: 1.35;
+      line-height: 1.3;
       max-width: 100%;
+      opacity: 0.92;
     }
 
-    .hero-side {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .truck-gallery {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .truck-gallery figure {
-      margin: 0;
-      border-radius: 18px;
+    .truck-work-shot {
+      position: relative;
+      border-radius: 22px;
       overflow: hidden;
-      border: 1px solid rgba(215, 161, 74, 0.18);
-      background: rgba(0, 0, 0, 0.45);
-      box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        0 14px 40px rgba(0, 0, 0, 0.4);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .truck-gallery img {
-      width: 100%;
-      height: auto;
-      display: block;
+      border: 1px solid var(--line-soft);
+      background: rgba(0, 0, 0, 0.35);
+      box-shadow: var(--shadow);
+      max-width: 720px;
       margin: 0 auto;
     }
 
-    .truck-gallery figcaption {
-      padding: 8px 10px 10px;
-      font-size: 12px;
-      color: var(--muted);
-      text-align: center;
+    .truck-work-shot::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(9, 16, 29, 0.35) 100%);
+      pointer-events: none;
     }
 
-    .hero-list {
-      display: grid;
-      gap: 12px;
-      margin-top: clamp(28px, 5vw, 52px);
-    }
-
-    .hero-list-item {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      color: var(--muted);
+    .truck-work-shot img {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     section {
       position: relative;
-      padding: 34px 0;
+      padding: 52px 0;
     }
 
     .reveal-up {
@@ -480,8 +518,7 @@
     .glass,
     .card,
     .stat,
-    .dim,
-    .hero-list-item {
+    .dim {
       transition:
         transform 0.35s var(--ease-soft),
         border-color 0.35s ease,
@@ -492,17 +529,14 @@
     .card:hover,
     .stat:hover,
     .dim:hover,
-    .hero-list-item:hover,
     .contact-box:hover,
-    .hero-side:hover,
     .hero-main:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255, 255, 255, 0.16);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
     }
 
-    .hero-main,
-    .hero-side {
+    .hero-main {
       transform-style: preserve-3d;
     }
 
@@ -573,33 +607,64 @@
     }
 
     .section-title {
-      margin: 0 0 12px;
+      margin: 0 0 16px;
       font-size: clamp(28px, 4vw, 42px);
-      line-height: 1.05;
+      line-height: 1.08;
       letter-spacing: -0.03em;
     }
 
+    .section-lead {
+      margin: 0 0 28px;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
     .section-text {
-      margin: 0 0 26px;
+      margin: 0 0 30px;
       max-width: 760px;
       color: var(--muted);
       font-size: 17px;
+      line-height: 1.6;
     }
 
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
     }
 
     .grid-2 {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      gap: 22px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
     }
 
     .card {
-      padding: 24px;
+      padding: 26px 24px;
+      border: 1px solid var(--line-soft);
+    }
+
+    .card-compact h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .card-compact p {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .advantages-card {
+      max-width: 720px;
+      margin-inline: auto;
     }
 
     .card h3 {
@@ -625,11 +690,11 @@
     }
 
     .dim {
-      padding: 18px;
-      border-radius: 18px;
+      padding: 20px;
+      border-radius: 20px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--line-soft);
     }
 
     .dim strong {
@@ -646,7 +711,15 @@
     .contact-wrap {
       display: grid;
       grid-template-columns: 1fr 0.92fr;
-      gap: 22px;
+      gap: 26px;
+    }
+
+    .contact-cta-line {
+      font-size: 17px;
+      color: var(--text);
+      font-weight: 600;
+      margin: 0 0 18px;
+      line-height: 1.45;
     }
 
     .contact-box {
@@ -684,18 +757,36 @@
     }
 
     .footer {
-      padding: 28px 0 50px;
+      padding: 36px 0 56px;
       color: var(--muted);
       font-size: 14px;
     }
 
     @media (max-width: 980px) {
+      .hero-split {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo-col {
+        max-width: 420px;
+        margin-inline: auto;
+        width: 100%;
+      }
+
+      .hero-photo-col img {
+        min-height: 320px;
+      }
+
       .hero-grid,
       .grid-3,
       .grid-2,
       .dimensions,
       .contact-wrap {
         grid-template-columns: 1fr;
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .stats-row {
@@ -709,7 +800,6 @@
       .hero { padding-top: 42px; }
 
       .hero-main,
-      .hero-side,
       .card,
       .contact-box {
         padding: 22px;
@@ -723,38 +813,27 @@
         align-items: stretch;
       }
 
-      .hero-actions-row:not(.hero-actions-social) {
+      .hero-actions-row {
         flex-direction: column;
-      }
-
-      .hero-actions-social {
-        flex-direction: row;
-        justify-content: center;
-        width: 100%;
-      }
-
-      .hero-actions-social .btn {
-        flex: 1 1 calc(50% - 6px);
-        width: auto;
-        max-width: none;
       }
 
       .stats-row {
         grid-template-columns: 1fr;
       }
 
-      .hero-intro {
+      .grid-4 {
         grid-template-columns: 1fr;
-        justify-items: center;
-        text-align: center;
       }
 
-      .hero-intro-copy {
-        text-align: center;
+      .hero-copy-col .stats-row {
+        grid-template-columns: 1fr;
       }
 
-      .hero-portrait-frame {
-        max-width: 168px;
+      .hero-copy-col .hero-actions {
+        align-items: stretch;
+      }
+
+      .hero-copy-col .hero-actions-row {
         width: 100%;
       }
     }
@@ -782,6 +861,7 @@
       <div class="logo">Грузоперевозки<span class="logo-sep">|</span><span class="logo-accent">Дмитрий</span></div>
       <nav class="nav-links">
         <a href="#about">О машине</a>
+        <a href="#cases">Когда звонят</a>
         <a href="#services">Задачи</a>
         <a href="#advantages">Почему Дмитрий</a>
         <a href="#reviews">Отзывы</a>
@@ -794,69 +874,89 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-main glass reveal-left">
-          <div class="hero-intro">
-            <div class="hero-portrait-frame">
-              <img src="images/dmitry-aldoshin.jpg" alt="Дмитрий Алдошин — водитель, грузоперевозки на Газели" width="800" height="800" loading="eager" decoding="async" />
+          <div class="hero-split">
+            <div class="hero-photo-col reveal-scale d-1">
+              <img src="алдошин дмитрий1.jpg" alt="Дмитрий Алдошин — профессиональный водитель" width="900" height="1100" loading="eager" decoding="async" />
             </div>
-            <div class="hero-intro-copy">
-              <div class="badge">Частные и коммерческие перевозки по России и в новые территории</div>
-            </div>
-          </div>
-          <h1 class="hero-heading-full reveal-up">Когда груз нужно не просто отвезти, а довести спокойно, точно и без лишних рисков</h1>
-          <p class="hero-text reveal-up d-1">
-            Дмитрий Алдошин — профессиональный водитель с 2012 года. Безаварийная практика, аккуратная работа с грузом и понятная коммуникация без суеты. Основная работа — из Обнинска и в радиусе до 150 км. При этом Дмитрий работает по всей России: если он находится рядом с вашим грузом, он всегда готов взять заказ и выполнить перевозку без лишних задержек.
-            Часто Дмитрий находится в рейсах, поэтому если ваш груз расположен по маршруту — он может приехать быстрее, чем вы ожидаете.
-          </p>
+            <div class="hero-copy-col">
+              <div class="badge">Город, межгород, Россия — прямой контакт с водителем</div>
+              <h1 class="hero-heading-full reveal-up">
+                <span class="h1-line">Надёжные грузоперевозки из Обнинска</span>
+                <span class="h1-line">по городу, межгороду и России</span>
+              </h1>
+              <p class="hero-text reveal-up d-1">
+                <span class="hero-line">Дмитрий Алдошин — профессиональный водитель с 2012 года.</span>
+                <span class="hero-line">Основное направление — Обнинск и радиус до 150 км.</span>
+                <span class="hero-line">Работает по России, включая ЛНР и ДНР.</span>
+                <span class="hero-line">Если машина находится рядом с вашим грузом — заказ может быть выполнен быстрее.</span>
+              </p>
 
-          <div class="hero-actions reveal-up d-2">
-            <div class="hero-actions-row">
-              <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить сейчас</a>
-              <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Обсудить условия</a>
-            </div>
-            <div class="hero-actions-row hero-actions-social">
-              <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать в Max</a>
-              <a class="btn btn-secondary" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
-            </div>
-          </div>
+              <div class="hero-actions reveal-up d-2">
+                <div class="hero-actions-row">
+                  <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
+                  <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Обсудить условия</a>
+                </div>
+                <div class="hero-actions-sub">
+                  <a href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Max</a>
+                  <span class="dot" aria-hidden="true">·</span>
+                  <a href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+                </div>
+              </div>
 
-          <div class="stats-row reveal-up d-3">
-            <div class="stat">
-              <strong>14 лет</strong>
-              <span>профессиональный водительский стаж</span>
-            </div>
-            <div class="stat">
-              <strong>без аварий</strong>
-              <span>спокойное и надёжное вождение</span>
-            </div>
-            <div class="stat">
-              <strong>2,5 тонны</strong>
-              <span>грузоподъёмность</span>
-            </div>
-            <div class="stat">
-              <strong><span class="count-up" data-count="55" data-prefix="от " data-suffix=" ₽/км"></span></strong>
-              <span>стоимость доставки</span>
+              <div class="stats-row reveal-up d-3">
+                <div class="stat">
+                  <strong>14 лет</strong>
+                  <span>в перевозках</span>
+                </div>
+                <div class="stat">
+                  <strong>без аварий</strong>
+                  <span>на маршруте</span>
+                </div>
+                <div class="stat">
+                  <strong>2,5 т</strong>
+                  <span>грузоподъёмность</span>
+                </div>
+                <div class="stat">
+                  <strong><span class="count-up" data-count="55" data-prefix="от " data-suffix=" ₽/км"></span></strong>
+                  <span>межгород</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="hero-side glass reveal-right">
-          <div class="truck-gallery">
-            <figure>
-              <img src="images/truck-front.png" alt="Газель Дмитрия Алдошина — вид спереди" width="1200" height="900" loading="eager" decoding="async" />
-              <figcaption>Вид спереди</figcaption>
-            </figure>
-            <figure>
-              <img src="images/truck-rear.png" alt="Газель Дмитрия Алдошина — вид сзади" width="1200" height="900" loading="lazy" decoding="async" />
-              <figcaption>Вид сзади</figcaption>
-            </figure>
+    <section id="cases">
+      <div class="container">
+        <h2 class="section-title reveal-up">Когда чаще всего обращаются</h2>
+        <div class="grid-4">
+          <div class="card glass card-compact reveal-scale d-1">
+            <h3>Срочно забрать груз</h3>
+            <p>Когда важно не откладывать и нужен быстрый выезд</p>
           </div>
-          <div class="hero-list">
-            <div class="hero-list-item">Базирование — Обнинск, работа в радиусе до 150 км</div>
-            <div class="hero-list-item">По России: берёт заказы, если находится рядом с грузом</div>
-            <div class="hero-list-item">Виды погрузки: задняя, верхняя и боковая</div>
-            <div class="hero-list-item">Город, межгород, Россия, ЛНР и ДНР</div>
-            <div class="hero-list-item">Прямой контакт с исполнителем без посредников</div>
+          <div class="card glass card-compact reveal-scale d-2">
+            <h3>Перевезти мебель или вещи</h3>
+            <p>Переезды, доставка, аккуратная погрузка</p>
           </div>
+          <div class="card glass card-compact reveal-scale d-3">
+            <h3>Паллеты и товар</h3>
+            <p>Подходит для складов, магазинов и поставок</p>
+          </div>
+          <div class="card glass card-compact reveal-scale d-4">
+            <h3>Межгород без посредников</h3>
+            <p>Прямой контакт с водителем без диспетчеров</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="truck-work">
+      <div class="container">
+        <h2 class="section-title reveal-up">Реальная машина в работе</h2>
+        <p class="section-lead reveal-up d-1">Газель с возможностью задней, боковой и верхней погрузки.</p>
+        <div class="truck-work-shot reveal-scale d-2">
+          <img src="машина вид спереди.png" alt="Газель Дмитрия в работе — вид спереди" width="1200" height="900" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -912,27 +1012,14 @@
     <section id="advantages">
       <div class="container">
         <h2 class="section-title reveal-up">Почему обращаются именно к Дмитрию</h2>
-        <div class="grid-2">
-          <div class="card glass reveal-up d-2">
-            <h3>Что получает клиент</h3>
-            <ul class="clean">
-              <li>Исполнителя с практикой профессионального вождения с 2012 года</li>
-              <li>Безаварийный опыт и спокойную манеру работы на маршруте</li>
-              <li>Понятную коммуникацию без лишних обещаний и суеты</li>
-              <li>Машину под объёмные, тяжёлые и паллетированные грузы</li>
-              <li>Готовность к дальним, межрегиональным и сложным направлениям</li>
-            </ul>
-          </div>
-          <div class="card glass reveal-up d-3">
-            <h3>Как выстроена работа</h3>
-            <ul class="clean">
-              <li>Дмитрий уточняет маршрут, тип груза, погрузку и сроки</li>
-              <li>Сразу говорит по существу: что подходит, на каких условиях и по какой ставке</li>
-              <li>Согласовывает поездку без путаницы и ненужных созвонов</li>
-              <li>Приезжает как исполнитель, который понимает ответственность за груз</li>
-              <li>Доводит перевозку до результата, а не просто закрывает рейс</li>
-            </ul>
-          </div>
+        <div class="card glass advantages-card reveal-up d-1">
+          <ul class="clean">
+            <li>Прямой контакт без посредников</li>
+            <li>Понятные условия без «сюрпризов»</li>
+            <li>Спокойная и аккуратная работа с грузом</li>
+            <li>Опыт междугородних перевозок</li>
+            <li>Быстрая реакция на запрос</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -942,16 +1029,16 @@
         <h2 class="section-title reveal-up">Что говорят клиенты</h2>
         <div class="grid-3">
           <div class="card glass reveal-scale d-1">
-            <div class="quote">«Приехал вовремя, спокойно организовал погрузку, довёз аккуратно. Всё без спешки и без лишних слов. Именно такой формат работы и нужен.»</div>
-            <div class="review-author">Частный клиент</div>
+            <div class="quote">«Нужно было срочно забрать мебель из Обнинска и успеть до вечера. Дмитрий ответил быстро, приехал в согласованное время, аккуратно упаковал и довёз без повреждений — без суеты и лишних звонков.»</div>
+            <div class="review-author">Обнинск, частный переезд</div>
           </div>
           <div class="card glass reveal-scale d-2">
-            <div class="quote">«Везли груз в другой город. Дмитрий всегда был на связи, маршрут отработал чётко. Чувствуется опыт и дисциплина.»</div>
-            <div class="review-author">Межгород</div>
+            <div class="quote">«Везли паллеты из Калуги: важна была ясность по срокам и цене. Обсудили по делу, на связи был постоянно, груз сдал без задержек и расхождений.»</div>
+            <div class="review-author">Калуга, поставка на точку</div>
           </div>
           <div class="card glass reveal-scale d-3">
-            <div class="quote">«Заказывали перевозку товара. Работа выстроена профессионально: без накладок, без путаницы, без ощущения случайного исполнителя.»</div>
-            <div class="review-author">Коммерческий заказ</div>
+            <div class="quote">«Из Москвы нужен был межгород без цепочки посредников. Нашли Дмитрия напрямую: договорились за один разговор, он доехал по маршруту в срок, на выгрузке всё прошло спокойно.»</div>
+            <div class="review-author">Москва, межгород</div>
           </div>
         </div>
       </div>
@@ -964,15 +1051,17 @@
           <p class="contact-note">
             Свяжитесь с Дмитрием, если важны точные сроки, спокойная работа и понятные условия без лишних разговоров. Здесь вы общаетесь сразу с человеком, который сам будет вести вашу перевозку.
           </p>
+          <p class="contact-cta-line">Ответит лично Дмитрий. Без диспетчеров и посредников.</p>
           <div class="phone">+7 953 313-55-05</div>
           <div class="hero-actions">
             <div class="hero-actions-row">
               <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
               <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Обсудить условия</a>
             </div>
-            <div class="hero-actions-row hero-actions-social">
-              <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать в Max</a>
-              <a class="btn btn-secondary" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+            <div class="hero-actions-sub">
+              <a href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать в Max</a>
+              <span class="dot" aria-hidden="true">·</span>
+              <a href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
             </div>
           </div>
         </div>
@@ -1059,14 +1148,12 @@
       });
 
       var heroMain = document.querySelector(".hero-main");
-      var heroSide = document.querySelector(".hero-side");
 
       function resetParallax() {
         if (heroMain) heroMain.style.transform = "";
-        if (heroSide) heroSide.style.transform = "";
       }
 
-      if (!reduceMotion && heroMain && heroSide) {
+      if (!reduceMotion && heroMain) {
         window.addEventListener(
           "mousemove",
           function (e) {
@@ -1075,8 +1162,6 @@
             var y = e.clientY / window.innerHeight - 0.5;
             heroMain.style.transform =
               "translate3d(" + x * 6 + "px, " + y * 6 + "px, 0)";
-            heroSide.style.transform =
-              "translate3d(" + x * -8 + "px, " + y * -8 + "px, 0)";
           },
           { passive: true }
         );
