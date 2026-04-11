@@ -450,6 +450,19 @@
       display: block;
     }
 
+    .truck-work-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2.5vw, 24px);
+      max-width: min(100%, 960px);
+      margin: 0 auto;
+    }
+
+    .truck-work-photos .truck-work-shot {
+      max-width: none;
+      margin: 0;
+    }
+
     section {
       position: relative;
       padding: 52px 0;
@@ -825,6 +838,10 @@
         grid-template-columns: 1fr;
       }
 
+      .truck-work-photos {
+        grid-template-columns: 1fr;
+      }
+
       .hero-copy-col .stats-row {
         grid-template-columns: 1fr;
       }
@@ -955,8 +972,13 @@
       <div class="container">
         <h2 class="section-title reveal-up">Реальная машина в работе</h2>
         <p class="section-lead reveal-up d-1">Газель с возможностью задней, боковой и верхней погрузки.</p>
-        <div class="truck-work-shot reveal-scale d-2">
-          <img src="машина вид спереди.png" alt="Газель Дмитрия в работе — вид спереди" width="1200" height="900" loading="lazy" decoding="async" />
+        <div class="truck-work-photos">
+          <div class="truck-work-shot reveal-scale d-2">
+            <img src="машина вид спереди.png" alt="Газель Дмитрия в работе — вид спереди" width="1200" height="900" loading="lazy" decoding="async" />
+          </div>
+          <div class="truck-work-shot reveal-scale d-3">
+            <img src="машина вид сзади.png" alt="Газель Дмитрия в работе — вид сзади" width="1200" height="900" loading="lazy" decoding="async" />
+          </div>
         </div>
       </div>
     </section>
