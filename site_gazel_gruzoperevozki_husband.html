@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Дмитрий Алдошин — грузоперевозки на Газели до 2,5 тонн</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #121a2f;
+      --panel: rgba(255, 255, 255, 0.06);
+      --panel-strong: rgba(255, 255, 255, 0.09);
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f5f7fb;
+      --muted: #b7c0d4;
+      --accent: #d7a14a;
+      --accent-2: #f1c27a;
+      --ok: #8dd7a5;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+      --radius: 24px;
+      --radius-sm: 18px;
+      --maxw: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(215, 161, 74, 0.14), transparent 28%),
+        radial-gradient(circle at 100% 0%, rgba(241, 194, 122, 0.10), transparent 30%),
+        linear-gradient(180deg, #09101d 0%, #0e1527 50%, #121a2f 100%);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(100% - 32px, var(--maxw));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(9, 16, 29, 0.72);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+    }
+
+    .logo span { color: var(--accent-2); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .hero {
+      padding: 78px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-main {
+      padding: 42px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(141, 215, 165, 0.11);
+      border: 1px solid rgba(141, 215, 165, 0.2);
+      color: #d1f5dd;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin: 0 0 18px;
+      max-width: 760px;
+    }
+
+    .hero-text {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 0 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 22px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #151515;
+      box-shadow: 0 14px 28px rgba(215, 161, 74, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.12);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 23px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-side {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .truck-visual {
+      min-height: 220px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        linear-gradient(135deg, rgba(215, 161, 74, 0.18), rgba(255,255,255,0.04)),
+        rgba(255, 255, 255, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 84px;
+    }
+
+    .hero-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-list-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      color: var(--muted);
+    }
+
+    section { padding: 34px 0; }
+
+    .section-title {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .section-text {
+      margin: 0 0 26px;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      line-height: 1.15;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    ul.clean {
+      margin: 14px 0 0;
+      padding-left: 18px;
+    }
+
+    .dimensions {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .dim {
+      padding: 18px;
+      border-radius: 18px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .dim strong {
+      display: block;
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .dim span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      gap: 22px;
+    }
+
+    .contact-box {
+      padding: 30px;
+    }
+
+    .phone {
+      margin: 8px 0 16px;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 800;
+      color: var(--accent-2);
+      letter-spacing: -0.03em;
+    }
+
+    .contact-note {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      color: var(--muted);
+    }
+
+    .quote {
+      font-size: 17px;
+      color: var(--text);
+    }
+
+    .review-author {
+      margin-top: 14px;
+      color: var(--accent-2);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .footer {
+      padding: 28px 0 50px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .dimensions,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding-top: 42px; }
+
+      .hero-main,
+      .hero-side,
+      .card,
+      .contact-box {
+        padding: 22px;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">Дмитрий <span>Алдошин</span></div>
+      <nav class="nav-links">
+        <a href="#about">О машине</a>
+        <a href="#services">Задачи</a>
+        <a href="#advantages">Почему Дмитрий</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-main glass">
+          <div class="badge">Частные и коммерческие перевозки по России и в новые территории</div>
+          <h1>Когда груз нужно не просто отвезти, а довести спокойно, точно и без лишних рисков</h1>
+          <p class="hero-text">
+            Дмитрий Алдошин — профессиональный водитель с 2012 года. Безаварийная практика, аккуратная работа с грузом и понятная коммуникация без суеты. Основная работа — из Обнинска и в радиусе до 150 км. При этом Дмитрий работает по всей России: если он находится рядом с вашим грузом, он всегда готов взять заказ и выполнить перевозку без лишних задержек.
+            Часто Дмитрий находится в рейсах, поэтому если ваш груз расположен по маршруту — он может приехать быстрее, чем вы ожидаете.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+79533135505">Позвонить сейчас</a>
+            <a class="btn btn-secondary" href="#max">Написать в Max</a>
+            <a class="btn btn-secondary" href="#max">Обсудить условия</a>
+            <a class="btn btn-secondary" href="#vk">ВКонтакте</a>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat">
+              <strong>с 2012 года</strong>
+              <span>профессиональный стаж</span>
+            </div>
+            <div class="stat">
+              <strong>безаварийно</strong>
+              <span>спокойная и надёжная практика</span>
+            </div>
+            <div class="stat">
+              <strong>до 2500 кг</strong>
+              <span>грузоподъёмность</span>
+            </div>
+            <div class="stat">
+              <strong>от 55 ₽/км</strong>
+              <span>стоимость доставки</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-side glass">
+          <div class="truck-visual">🚚</div>
+          <div class="hero-list">
+            <div class="hero-list-item">Базирование — Обнинск, работа в радиусе до 150 км</div>
+            <div class="hero-list-item">По России: берёт заказы, если находится рядом с грузом</div>
+            <div class="hero-list-item">Виды погрузки: задняя, верхняя и боковая</div>
+            <div class="hero-list-item">Прямой контакт с исполнителем без посредников</div>
+          </div>
+            <div class="hero-list-item">Виды погрузки: задняя, верхняя и боковая</div>
+            <div class="hero-list-item">Город, межгород, Россия, ЛНР и ДНР</div>
+            <div class="hero-list-item">Прямой контакт с исполнителем без посредников</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">Машина, рассчитанная на серьёзную загрузку</h2>
+        <p class="section-text">
+          Здесь важны не громкие обещания, а конкретные параметры. Газель Дмитрия подходит для тяжёлых, объёмных и нестандартных задач, когда клиенту нужен понятный рабочий транспорт и человек, который умеет с ним работать профессионально.
+        </p>
+        <div class="dimensions">
+          <div class="dim">
+            <strong>2500 кг</strong>
+            <span>грузоподъёмность</span>
+          </div>
+          <div class="dim">
+            <strong>6,5 м</strong>
+            <span>длина кузова</span>
+          </div>
+          <div class="dim">
+            <strong>2,2 м</strong>
+            <span>ширина кузова</span>
+          </div>
+          <div class="dim">
+            <strong>2,3 м</strong>
+            <span>высота кузова</span>
+          </div>
+          <div class="dim">
+            <strong>13 европалет</strong>
+            <span>вместимость</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Какие задачи чаще всего доверяют Дмитрию</h2>
+        <p class="section-text">
+          Сайт должен отвечать на главный вопрос клиента: подойдёт ли эта машина и этот водитель под мою задачу. Здесь ответ — да, если вам нужна вместительность, аккуратность и взрослый подход к работе.
+        </p>
+        <div class="grid-3">
+          <div class="card glass">
+            <h3>Переезды и личные вещи</h3>
+            <p>Квартирные, дачные и офисные переезды. Мебель, техника, коробки и имущество, где важны спокойная загрузка и аккуратная доставка без лишней спешки.</p>
+          </div>
+          <div class="card glass">
+            <h3>Товар, паллеты и поставки</h3>
+            <p>Коммерческие грузы для магазинов, складов, небольших производств и бизнеса. Удобно, когда нужен прямой контакт с исполнителем, а не длинная цепочка посредников.</p>
+          </div>
+          <div class="card glass">
+            <h3>Дальние и непростые маршруты</h3>
+            <p>Межгород, нестандартные направления, новые территории ЛНР и ДНР. Там особенно ценятся опыт, собранность, дисциплина и уверенное вождение.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="advantages">
+      <div class="container">
+        <h2 class="section-title">Почему обращаются именно к Дмитрию</h2>
+        <p class="section-text">
+          Услуга выглядит дорого не тогда, когда на сайте много громких слов, а когда всё написано спокойно, точно и по делу. В перевозках это особенно важно: человек покупает не текст, а ощущение надёжности.
+        </p>
+        <div class="grid-2">
+          <div class="card glass">
+            <h3>Что получает клиент</h3>
+            <ul class="clean">
+              <li>Исполнителя с практикой профессионального вождения с 2012 года</li>
+              <li>Безаварийный опыт и спокойную манеру работы на маршруте</li>
+              <li>Понятную коммуникацию без лишних обещаний и суеты</li>
+              <li>Машину под объёмные, тяжёлые и паллетированные грузы</li>
+              <li>Готовность к дальним, межрегиональным и сложным направлениям</li>
+            </ul>
+          </div>
+          <div class="card glass">
+            <h3>Как выстроена работа</h3>
+            <ul class="clean">
+              <li>Дмитрий уточняет маршрут, тип груза, погрузку и сроки</li>
+              <li>Сразу говорит по существу: что подходит, на каких условиях и по какой ставке</li>
+              <li>Согласовывает поездку без путаницы и ненужных созвонов</li>
+              <li>Приезжает как исполнитель, который понимает ответственность за груз</li>
+              <li>Доводит перевозку до результата, а не просто закрывает рейс</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews">
+      <div class="container">
+        <h2 class="section-title">Что говорят клиенты</h2>
+        <p class="section-text">
+          Даже короткие отзывы работают сильнее, чем длинные рекламные обещания. Они показывают стиль работы: вовремя, спокойно, аккуратно, по делу.
+        </p>
+        <div class="grid-3">
+          <div class="card glass">
+            <div class="quote">«Приехал вовремя, спокойно организовал погрузку, довёз аккуратно. Всё без спешки и без лишних слов. Именно такой формат работы и нужен.»</div>
+            <div class="review-author">Частный клиент</div>
+          </div>
+          <div class="card glass">
+            <div class="quote">«Везли груз в другой город. Дмитрий всегда был на связи, маршрут отработал чётко. Чувствуется опыт и дисциплина.»</div>
+            <div class="review-author">Межгород</div>
+          </div>
+          <div class="card glass">
+            <div class="quote">«Заказывали перевозку товара. Работа выстроена профессионально: без накладок, без путаницы, без ощущения случайного исполнителя.»</div>
+            <div class="review-author">Коммерческий заказ</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacts">
+      <div class="container contact-wrap">
+        <div class="contact-box glass">
+          <h2 class="section-title">Если вам нужен прямой и надёжный исполнитель</h2>
+          <p class="contact-note">
+            Свяжитесь с Дмитрием, если важны точные сроки, спокойная работа и понятные условия без лишних разговоров. Здесь вы общаетесь сразу с человеком, который сам будет вести вашу перевозку.
+          </p>
+          <div class="phone">+7 953 313-55-05</div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:+79533135505">Позвонить</a>
+            <a class="btn btn-secondary" href="#max">Написать в Max</a>
+            <a class="btn btn-secondary" href="#max">Обсудить условия</a>
+            <a class="btn btn-secondary" href="#vk">ВКонтакте</a>
+          </div>
+        </div>
+
+        <div class="contact-box glass">
+          <h3 style="margin-top:0; font-size:28px;">Коротко по делу</h3>
+          <div class="contact-list">
+            <div>🚚 Газель до 2,5 тонн, объём кузова 32 м³</div>
+            <div>📦 Вместимость до 13 европалет</div>
+            <div>🔧 Погрузка: задняя, верхняя, боковая</div>
+            <div>💰 Стоимость доставки — от 55 рублей за км</div>
+            <div>🛣️ Обнинск и радиус до 150 км, а также вся Россия и новые территории</div>
+            <div>🧭 Профессиональный стаж с 2012 года</div>
+            <div>📞 Прямой контакт без посредников</div>
+            <div id="max">💬 Max — добавьте ссылку или контакт Дмитрия</div>
+            <div id="vk">🔗 ВКонтакте — добавьте ссылку на страницу Дмитрия</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      Дмитрий Алдошин • Грузоперевозки на Газели • Спокойная работа, точные сроки, прямой контакт
+    </div>
+  </footer>
+</body>
+</html>
