@@ -226,6 +226,14 @@
       grid-template-columns: repeat(2, 1fr);
     }
 
+    .hero-copy-col .stats-row .stat strong,
+    .hero-copy-col .stats-row .stat strong .count-up {
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
     .hero-heading-full {
       margin-top: 0;
       margin-bottom: 18px;
@@ -421,7 +429,13 @@
       letter-spacing: -0.02em;
     }
 
+    .stat strong .count-up {
+      font: inherit;
+      display: inline;
+    }
+
     .stat span {
+      display: block;
       color: var(--muted);
       font-size: 12px;
       text-align: center;
@@ -622,7 +636,7 @@
     }
 
     .count-up {
-      display: inline-block;
+      display: inline;
     }
 
     .section-title {
