@@ -6,7 +6,7 @@
 
 - `index.html` — точка входа (удобно для GitHub Pages и обычного хостинга)
 - `site_gazel_gruzoperevozki_husband.html` — та же разметка (можно открывать напрямую)
-- `images/dmitry-aldoshin.webp` — портрет
+- `images/dmitry-aldoshin.jpg` — портрет (копия из `алдошин дмитрий1.jpg`)
 - `images/truck-front.png`, `images/truck-rear.png` — фото машины (копии из файлов в корне)
 - Исходные снимки в корне: `машина вид спереди.png`, `машина вид сзади.png`
 
