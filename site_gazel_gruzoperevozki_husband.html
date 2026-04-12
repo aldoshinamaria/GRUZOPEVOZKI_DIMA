@@ -334,10 +334,15 @@
     .hero-text {
       font-size: clamp(18px, 1.35vw, 20px);
       color: rgba(255, 255, 255, 0.76);
-      max-width: 36rem;
+      max-width: min(62rem, 100%);
       width: 100%;
       margin: 0 0 36px;
       line-height: 1.78;
+    }
+
+    .hero-text .hero-line-lead,
+    .hero-text .hero-line-nowrap {
+      white-space: nowrap;
     }
 
     .hero-text .hero-line {
@@ -495,6 +500,17 @@
     .stat strong .count-up {
       font: inherit;
       display: inline;
+      transition: color 0.35s ease, text-shadow 0.35s ease;
+    }
+
+    .stat--price strong {
+      white-space: nowrap;
+      font-size: clamp(22px, 2.75vw, 34px);
+    }
+
+    .stat:hover strong .count-up {
+      color: var(--accent-2);
+      text-shadow: 0 0 18px rgba(241, 194, 122, 0.22);
     }
 
     .stat span {
@@ -634,7 +650,11 @@
       color: rgba(255, 255, 255, 0.72);
       font-size: clamp(17px, 1.25vw, 19px);
       line-height: 1.75;
-      max-width: 40rem;
+      max-width: min(52rem, 100%);
+    }
+
+    .driver-copy .driver-line-lead {
+      white-space: nowrap;
     }
 
     .driver-copy .driver-line {
@@ -644,6 +664,22 @@
 
     .driver-copy .driver-line:last-child {
       margin-bottom: 0;
+    }
+
+    @media (max-width: 800px) {
+      .hero-text .hero-line-lead,
+      .hero-text .hero-line-nowrap,
+      .hero-urgency.hero-urgency--one-line,
+      .driver-copy .driver-line-lead {
+        white-space: normal;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .stat--price strong {
+        white-space: normal;
+        font-size: clamp(20px, 5.5vw, 28px);
+      }
     }
 
     .grid-5 {
@@ -1089,13 +1125,20 @@
       border-left: 3px solid rgba(241, 194, 122, 0.45);
     }
 
+    .hero-urgency.hero-urgency--one-line {
+      max-width: min(65rem, 100%);
+      margin-left: auto;
+      margin-right: auto;
+      white-space: nowrap;
+    }
+
     .section-quick {
       padding-top: 48px;
       padding-bottom: 56px;
     }
 
     .quick-action-card {
-      max-width: 640px;
+      max-width: min(72rem, 100%);
       margin: 0 auto;
       padding: 32px 28px 28px;
       text-align: center;
@@ -1108,6 +1151,13 @@
       letter-spacing: -0.03em;
       line-height: 1.15;
       color: var(--text);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 960px) {
+      .quick-action-title {
+        white-space: normal;
+      }
     }
 
     .quick-action-lead {
@@ -1313,7 +1363,7 @@
 
     @media (max-width: 980px) {
       .hero-text {
-        max-width: 40rem;
+        max-width: min(62rem, 100%);
       }
 
       .hero-photo-col {
@@ -1475,12 +1525,12 @@
               <div class="badge">Город, межгород, Россия — прямой контакт с водителем</div>
               <h1 class="hero-heading-full reveal-up">Грузоперевозки из Обнинска без посредников и лишней суеты</h1>
               <p class="hero-text reveal-up d-1">
-                <span class="hero-line">Дмитрий Алдошин — профессиональный водитель с 2012 года.</span>
+                <span class="hero-line hero-line-lead">Дмитрий Алдошин — профессиональный водитель с 2012 года.</span>
                 <span class="hero-line">Основное направление — Обнинск и радиус до 150 км.</span>
                 <span class="hero-line">Работает по России, включая ЛНР и ДНР.</span>
-                <span class="hero-line">Если машина находится рядом с вашим грузом — выезд возможен быстрее.</span>
+                <span class="hero-line hero-line-nowrap">Если машина находится рядом с вашим грузом — выезд возможен быстрее.</span>
               </p>
-              <p class="hero-urgency reveal-up d-1">Часто в рейсе — если ваш груз по маршруту, выезд возможен быстрее обычного.</p>
+              <p class="hero-urgency hero-urgency--one-line reveal-up d-1">Часто в рейсе — если ваш груз по маршруту, выезд возможен быстрее обычного.</p>
 
               <div class="hero-actions reveal-up d-2">
                 <div class="hero-actions-row">
@@ -1505,7 +1555,7 @@
                   <strong>2,5 т</strong>
                   <span>груз</span>
                 </div>
-                <div class="stat">
+                <div class="stat stat--price">
                   <strong><span class="count-up" data-count="55" data-prefix="от " data-suffix=" ₽/км"></span></strong>
                   <span>межгород</span>
                 </div>
@@ -1544,7 +1594,7 @@
             <h2>Ваш груз ведёт лично Дмитрий</h2>
             <p class="driver-trust">Вы общаетесь напрямую с водителем, который будет выполнять перевозку.</p>
             <p>
-              <span class="driver-line">Дмитрий Алдошин — профессиональный водитель с 2012 года.</span>
+              <span class="driver-line driver-line-lead">Дмитрий Алдошин — профессиональный водитель с 2012 года.</span>
               <span class="driver-line">Работает без посредников и сам отвечает за маршрут, сроки и результат.</span>
               <span class="driver-line">Аккуратная работа с грузом, спокойный стиль и понятные условия.</span>
             </p>
