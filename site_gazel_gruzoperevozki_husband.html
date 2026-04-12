@@ -1075,6 +1075,242 @@
       text-align: center;
     }
 
+    .hero-urgency {
+      margin: -8px 0 24px;
+      padding: 12px 16px;
+      max-width: 36rem;
+      font-size: clamp(15px, 1.15vw, 16px);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.78);
+      text-align: left;
+      background: rgba(215, 161, 74, 0.07);
+      border: 1px solid rgba(215, 161, 74, 0.14);
+      border-radius: 14px;
+      border-left: 3px solid rgba(241, 194, 122, 0.45);
+    }
+
+    .section-quick {
+      padding-top: 48px;
+      padding-bottom: 56px;
+    }
+
+    .quick-action-card {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 32px 28px 28px;
+      text-align: center;
+    }
+
+    .quick-action-title {
+      margin: 0 0 14px;
+      font-size: clamp(22px, 2.6vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .quick-action-lead {
+      margin: 0 0 12px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .quick-action-list {
+      margin: 0 auto 22px;
+      padding: 0;
+      list-style: none;
+      max-width: 420px;
+      text-align: left;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .quick-action-list li {
+      position: relative;
+      padding-left: 1.1em;
+      margin-bottom: 0.4em;
+    }
+
+    .quick-action-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: rgba(241, 194, 122, 0.65);
+    }
+
+    .quick-action-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .section-bridge {
+      margin: -6px auto 28px;
+      max-width: 640px;
+      color: rgba(255, 255, 255, 0.68);
+      font-size: clamp(15px, 1.15vw, 17px);
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    .driver-trust {
+      margin: 0 0 16px;
+      font-size: clamp(16px, 1.2vw, 18px);
+      line-height: 1.5;
+      font-weight: 600;
+      color: rgba(241, 194, 122, 0.92);
+      max-width: 38rem;
+    }
+
+    .adv-closer {
+      margin: 28px auto 0;
+      max-width: 560px;
+      text-align: center;
+      font-size: clamp(15px, 1.15vw, 17px);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .reviews-kicker {
+      margin: -8px auto 24px;
+      max-width: 640px;
+      font-size: clamp(15px, 1.15vw, 17px);
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.65);
+      text-align: center;
+    }
+
+    .review-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px 8px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--accent-2);
+    }
+
+    .review-dot {
+      opacity: 0.45;
+    }
+
+    .review-city {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .review-case {
+      color: rgba(255, 255, 255, 0.55);
+      font-weight: 600;
+    }
+
+    .how-steps {
+      margin: 8px auto 0;
+      padding: 0;
+      list-style: none;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .how-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 20px 20px 18px;
+      text-align: left;
+      border-radius: var(--radius-sm);
+    }
+
+    .how-step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 15px;
+      background: rgba(215, 161, 74, 0.15);
+      color: var(--accent-2);
+      border: 1px solid rgba(215, 161, 74, 0.22);
+    }
+
+    .how-step-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      font-size: 15px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .how-step-body strong {
+      color: var(--text);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    .contact-now {
+      margin: 0 auto 18px;
+      max-width: 520px;
+      font-size: 16px;
+      line-height: 1.5;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 60;
+      padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0));
+      gap: 10px;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: nowrap;
+      background: linear-gradient(180deg, transparent 0%, rgba(7, 11, 20, 0.92) 28%);
+      background-color: rgba(9, 16, 29, 0.92);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px) saturate(1.1);
+      -webkit-backdrop-filter: blur(16px) saturate(1.1);
+      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .sticky-cta .btn {
+      flex: 1;
+      min-height: 48px;
+      padding: 12px 14px;
+      font-size: 15px;
+    }
+
+    @media (max-width: 900px) {
+      .sticky-cta {
+        display: flex;
+      }
+
+      body {
+        padding-bottom: calc(72px + env(safe-area-inset-bottom, 0));
+      }
+    }
+
+    @media (min-width: 901px) {
+      .sticky-cta {
+        display: none !important;
+      }
+    }
+
     @media (max-width: 980px) {
       .hero-split {
         grid-template-columns: 1fr;
@@ -1104,6 +1340,12 @@
       .hero-copy-col h1.hero-heading-full,
       .hero-copy-col .hero-text {
         text-align: center;
+      }
+
+      .hero-urgency {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       .hero-text {
@@ -1252,7 +1494,7 @@
         <a href="#services">Задачи</a>
         <a href="#advantages">Почему Дмитрий</a>
         <a href="#reviews">Отзывы</a>
-        <a href="#contacts">Контакты</a>
+        <a href="#contacts">Связаться с Дмитрием</a>
       </nav>
     </div>
   </header>
@@ -1271,11 +1513,12 @@
                 <span class="hero-line">Работает по России, включая ЛНР и ДНР.</span>
                 <span class="hero-line">Если машина находится рядом с вашим грузом — выезд возможен быстрее.</span>
               </p>
+              <p class="hero-urgency reveal-up d-1">Часто в рейсе — если ваш груз по маршруту, выезд возможен быстрее обычного.</p>
 
               <div class="hero-actions reveal-up d-2">
                 <div class="hero-actions-row">
                   <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
-                  <a class="btn btn-secondary" href="#contacts">Рассчитать перевозку</a>
+                  <a class="btn btn-secondary" href="#contacts">Уточнить маршрут и стоимость</a>
                 </div>
                 <div class="hero-actions-sub">
                   <a href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
@@ -1309,6 +1552,24 @@
       </div>
     </section>
 
+    <section id="quick-action" class="section-quick">
+      <div class="container">
+        <div class="quick-action-card glass reveal-up">
+          <h2 class="quick-action-title">Можно написать прямо сейчас и уточнить задачу</h2>
+          <p class="quick-action-lead">Опишите маршрут и груз — Дмитрий ответит лично и скажет:</p>
+          <ul class="quick-action-list">
+            <li>сможет ли взять заказ</li>
+            <li>когда возможен выезд</li>
+            <li>ориентир по стоимости</li>
+          </ul>
+          <div class="quick-action-actions">
+            <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
+            <a class="btn btn-secondary" href="#contacts">Написать</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="driver" class="section-tight-top">
       <div class="container">
         <div class="driver-split">
@@ -1317,6 +1578,7 @@
           </div>
           <div class="driver-copy reveal-right d-1">
             <h2>Ваш груз ведёт лично Дмитрий</h2>
+            <p class="driver-trust">Вы общаетесь напрямую с водителем, который будет выполнять перевозку.</p>
             <p>
               <span class="driver-line">Дмитрий Алдошин — профессиональный водитель с 2012 года.</span>
               <span class="driver-line">Работает без посредников и сам отвечает за маршрут, сроки и результат.</span>
@@ -1330,6 +1592,7 @@
     <section id="cases" class="section-band">
       <div class="container">
         <h2 class="section-title reveal-up">Когда чаще всего обращаются</h2>
+        <p class="section-bridge reveal-up d-1">Если вы узнали свою ситуацию — можно сразу написать и обсудить.</p>
         <div class="grid-4">
           <div class="card glass card-compact cases-card reveal-scale d-1">
             <h3>🚚 Срочный выезд</h3>
@@ -1434,26 +1697,67 @@
             <h3>Быстрая реакция на запрос</h3>
           </div>
         </div>
+        <p class="adv-closer reveal-up">Без неожиданных доплат и без ситуаций, когда водитель «пропадает».</p>
       </div>
     </section>
 
     <section id="reviews">
       <div class="container">
         <h2 class="section-title reveal-up">Что говорят клиенты</h2>
+        <p class="reviews-kicker reveal-up d-1">Отзывы от людей, которые уже работали с Дмитрием</p>
         <div class="grid-3">
           <div class="card glass reveal-scale d-1">
+            <div class="review-meta"><span class="review-city">Обнинск</span><span class="review-dot" aria-hidden="true">·</span><span class="review-case">срочно, мебель межгород</span></div>
             <div class="quote">«Нужно было срочно перевезти мебель из Обнинска в Калугу: два дивана и шкаф. Дмитрий ответил за 15 минут, приехал к 10:00, помог снести из подъезда и через 3 часа уже разгружались на месте — без задержек и ссор с грузчиками.»</div>
             <div class="review-author">Обнинск → Калуга, мебель</div>
           </div>
           <div class="card glass reveal-scale d-2">
+            <div class="review-meta"><span class="review-city">Калуга</span><span class="review-dot" aria-hidden="true">·</span><span class="review-case">паллеты, открытие магазина</span></div>
             <div class="quote">«Из Калуги везли 6 паллет на точку к открытию магазина. Важны были окно по времени и акт приёмки. Дмитрий был на связи в дороге, приехал в Обнинск в согласованный слот, паллеты приняли с первого раза.»</div>
             <div class="review-author">Калуга → Обнинск, 6 паллет</div>
           </div>
           <div class="card glass reveal-scale d-3">
+            <div class="review-meta"><span class="review-city">Москва</span><span class="review-dot" aria-hidden="true">·</span><span class="review-case">межгород, сборный груз</span></div>
             <div class="quote">«Заказывали межгород из Москвы: техника и коробки, нужен был прямой контакт без диспетчеров. Один звонок — Дмитрий сам подтвердил маршрут и цену, на выгрузке в Туле подождали документы 20 минут — без нервов.»</div>
             <div class="review-author">Москва → Тула, сборный груз</div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="container">
+        <h2 class="section-title reveal-up">Как проходит работа</h2>
+        <ol class="how-steps reveal-up d-1">
+          <li class="how-step glass">
+            <span class="how-step-num">1</span>
+            <div class="how-step-body">
+              <strong>Вы пишете или звоните</strong>
+              <span>→ описываете маршрут и груз</span>
+            </div>
+          </li>
+          <li class="how-step glass">
+            <span class="how-step-num">2</span>
+            <div class="how-step-body">
+              <strong>Дмитрий отвечает</strong>
+              <span>→ уточняет детали и называет условия</span>
+            </div>
+          </li>
+          <li class="how-step glass">
+            <span class="how-step-num">3</span>
+            <div class="how-step-body">
+              <strong>Договариваетесь</strong>
+              <span>→ согласуете время и маршрут</span>
+            </div>
+          </li>
+          <li class="how-step glass">
+            <span class="how-step-num">4</span>
+            <div class="how-step-body">
+              <strong>Перевозка</strong>
+              <span>→ груз доставляется без лишней суеты</span>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
@@ -1466,13 +1770,14 @@
             Напишите маршрут, объём и желаемые сроки — Дмитрий уточнит детали и предложит понятный вариант без лишних этапов.
           </p>
           <div class="phone">+7 953 313-55-05</div>
+          <p class="contact-now">Можно написать прямо сейчас — ответ обычно в течение короткого времени.</p>
           <div class="hero-actions">
             <div class="hero-actions-row">
               <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
-              <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Рассчитать перевозку</a>
+              <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Уточнить маршрут и стоимость</a>
             </div>
             <div class="hero-actions-sub">
-              <a href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать в Max</a>
+              <a href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать Дмитрию</a>
               <span class="dot" aria-hidden="true">·</span>
               <a href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
             </div>
@@ -1489,13 +1794,18 @@
             <div>🛣️ Обнинск и радиус до 150 км, а также вся Россия и новые территории</div>
             <div>🧭 Профессиональный стаж с 2012 года</div>
             <div>📞 Прямой контакт без посредников</div>
-            <div id="max">💬 Max — <a class="link-inline" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">написать Дмитрию</a></div>
+            <div id="max">💬 <a class="link-inline" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать Дмитрию</a> в Max</div>
             <div id="vk">🔗 ВКонтакте — <a class="link-inline" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">страница Дмитрия</a></div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <div class="sticky-cta" role="navigation" aria-label="Быстрая связь">
+    <a class="btn btn-primary sticky-cta-call" href="tel:+79533135505">Позвонить</a>
+    <a class="btn btn-secondary sticky-cta-write" href="#contacts">Написать</a>
+  </div>
 
   <footer class="footer">
     <div class="container reveal-up">
