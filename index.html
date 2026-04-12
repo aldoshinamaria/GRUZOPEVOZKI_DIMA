@@ -200,9 +200,9 @@
 
     .hero-split {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(32px, 5vw, 56px);
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: clamp(28px, 4vw, 44px);
+      align-items: stretch;
     }
 
     .hero-photo-col {
@@ -251,34 +251,34 @@
       min-width: 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-      text-align: left;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
     }
 
     .hero-copy-col .badge {
-      align-self: flex-start;
+      align-self: center;
     }
 
     .hero-copy-col .hero-actions {
-      align-items: flex-start;
+      align-items: center;
       width: 100%;
     }
 
     .hero-copy-col .hero-actions-row {
-      justify-content: flex-start;
+      justify-content: center;
     }
 
     .hero-copy-col .hero-actions-sub {
-      justify-content: flex-start;
+      justify-content: center;
     }
 
     .hero-copy-col h1.hero-heading-full {
-      text-align: left;
+      text-align: center;
     }
 
     .hero-copy-col .hero-text {
-      text-align: left;
+      text-align: center;
     }
 
     .hero-copy-col .stats-row {
@@ -1082,7 +1082,7 @@
       font-size: clamp(15px, 1.15vw, 16px);
       line-height: 1.55;
       color: rgba(255, 255, 255, 0.78);
-      text-align: left;
+      text-align: center;
       background: rgba(215, 161, 74, 0.07);
       border: 1px solid rgba(215, 161, 74, 0.14);
       border-radius: 14px;
@@ -1312,42 +1312,6 @@
     }
 
     @media (max-width: 980px) {
-      .hero-split {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy-col {
-        align-items: center;
-        text-align: center;
-      }
-
-      .hero-copy-col .badge {
-        align-self: center;
-      }
-
-      .hero-copy-col .hero-actions {
-        align-items: center;
-      }
-
-      .hero-copy-col .hero-actions-row {
-        justify-content: center;
-      }
-
-      .hero-copy-col .hero-actions-sub {
-        justify-content: center;
-      }
-
-      .hero-copy-col h1.hero-heading-full,
-      .hero-copy-col .hero-text {
-        text-align: center;
-      }
-
-      .hero-urgency {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
       .hero-text {
         max-width: 40rem;
       }
@@ -1504,6 +1468,9 @@
       <div class="container hero-grid">
         <div class="hero-main glass reveal-left">
           <div class="hero-split">
+            <div class="hero-photo-col reveal-scale d-1">
+              <img src="машина вид спереди.png" alt="Газель Дмитрия — рабочая машина для перевозок" width="1200" height="900" loading="eager" decoding="async" />
+            </div>
             <div class="hero-copy-col">
               <div class="badge">Город, межгород, Россия — прямой контакт с водителем</div>
               <h1 class="hero-heading-full reveal-up">Грузоперевозки из Обнинска без посредников и лишней суеты</h1>
@@ -1543,9 +1510,6 @@
                   <span>межгород</span>
                 </div>
               </div>
-            </div>
-            <div class="hero-photo-col reveal-scale d-1">
-              <img src="машина вид спереди.png" alt="Газель Дмитрия — рабочая машина для перевозок" width="1200" height="900" loading="eager" decoding="async" />
             </div>
           </div>
         </div>
