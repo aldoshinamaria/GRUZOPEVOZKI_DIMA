@@ -39,10 +39,22 @@
       font-family: Inter, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(215, 161, 74, 0.14), transparent 28%),
-        radial-gradient(circle at 100% 0%, rgba(241, 194, 122, 0.10), transparent 30%),
-        linear-gradient(180deg, #09101d 0%, #0e1527 50%, #121a2f 100%);
+        radial-gradient(circle at 20% 18%, rgba(215, 161, 74, 0.11), transparent 42%),
+        radial-gradient(circle at 82% 8%, rgba(70, 120, 255, 0.07), transparent 36%),
+        radial-gradient(circle at 50% 100%, rgba(15, 28, 52, 0.55), transparent 45%),
+        linear-gradient(180deg, #070b14 0%, #0a1222 42%, #0e1628 100%);
       line-height: 1.55;
+    }
+
+    main p {
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.62;
+    }
+
+    p.hero-text,
+    .contact-intro,
+    .contact-note {
+      line-height: inherit;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -79,10 +91,10 @@
     }
 
     header.is-scrolled {
-      background: rgba(9, 16, 29, 0.9);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
-      backdrop-filter: blur(20px);
+      background: rgba(10, 15, 30, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38);
+      backdrop-filter: blur(22px) saturate(1.15);
     }
 
     .nav {
@@ -125,17 +137,34 @@
 
     .hero {
       position: relative;
-      padding: 96px 0 72px;
+      padding: 104px 0 88px;
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      inset: -10% -5% auto -5%;
-      height: 420px;
+      inset: -12% -8% auto -8%;
+      height: min(520px, 72vh);
       background:
-        radial-gradient(circle at 20% 30%, rgba(215, 161, 74, 0.08), transparent 30%),
-        radial-gradient(circle at 80% 10%, rgba(241, 194, 122, 0.06), transparent 28%);
+        radial-gradient(ellipse 70% 60% at 45% 20%, rgba(215, 161, 74, 0.14), transparent 55%),
+        radial-gradient(ellipse 50% 45% at 78% 12%, rgba(241, 194, 122, 0.09), transparent 50%),
+        radial-gradient(circle at 50% 40%, rgba(90, 140, 255, 0.06), transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 50% -80px auto;
+      transform: translateX(-50%);
+      width: min(92%, 920px);
+      height: 200px;
+      background: radial-gradient(
+        ellipse 80% 70% at 50% 0%,
+        rgba(215, 161, 74, 0.12),
+        transparent 70%
+      );
       pointer-events: none;
       z-index: 0;
     }
@@ -153,15 +182,20 @@
     }
 
     .glass {
-      background: var(--panel);
-      border: 1px solid rgba(255, 255, 255, 0.045);
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(255, 255, 255, 0.055);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
+      box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.32),
+        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+      backdrop-filter: blur(18px) saturate(1.12);
+      -webkit-backdrop-filter: blur(18px) saturate(1.12);
     }
 
     .hero-main {
       padding: 48px 48px 44px;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
     }
 
     .hero-split {
@@ -181,6 +215,8 @@
         0 24px 64px rgba(0, 0, 0, 0.45),
         0 0 0 1px rgba(255, 255, 255, 0.04) inset;
       min-height: 0;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
     }
 
     .hero-photo-col::after {
@@ -188,12 +224,14 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(
-        115deg,
-        rgba(5, 8, 16, 0.42) 0%,
-        rgba(5, 8, 16, 0.12) 45%,
-        rgba(5, 8, 16, 0.38) 100%
-      );
+      background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.42) 0%, transparent 52%),
+        linear-gradient(
+          115deg,
+          rgba(5, 8, 16, 0.38) 0%,
+          rgba(5, 8, 16, 0.1) 48%,
+          rgba(5, 8, 16, 0.32) 100%
+        );
       z-index: 1;
     }
 
@@ -206,6 +244,7 @@
       object-position: center center;
       position: relative;
       z-index: 0;
+      filter: contrast(1.06) brightness(0.9) saturate(1.02);
     }
 
     .hero-copy-col {
@@ -275,8 +314,8 @@
 
     h1 {
       font-size: clamp(34px, 5.2vw, 56px);
-      line-height: 1.06;
-      letter-spacing: -0.038em;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
       margin: 0 0 22px;
       max-width: 760px;
     }
@@ -284,8 +323,8 @@
     h1.hero-heading-full {
       max-width: min(22em, 100%);
       width: 100%;
-      line-height: 1.1;
-      letter-spacing: -0.032em;
+      line-height: 1.06;
+      letter-spacing: -0.022em;
     }
 
     h1.hero-heading-full .h1-line {
@@ -294,10 +333,10 @@
 
     .hero-text {
       font-size: clamp(18px, 1.35vw, 20px);
-      color: rgba(183, 192, 212, 0.95);
+      color: rgba(255, 255, 255, 0.76);
       max-width: 36rem;
       width: 100%;
-      margin: 0 0 32px;
+      margin: 0 0 36px;
       line-height: 1.78;
     }
 
@@ -366,11 +405,12 @@
       border: 1px solid transparent;
       font-weight: 700;
       cursor: pointer;
+      isolation: isolate;
       transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
+        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.28s ease,
+        background 0.28s ease;
     }
 
     .btn::after {
@@ -382,15 +422,15 @@
       background: linear-gradient(
         120deg,
         transparent 0%,
-        rgba(255, 255, 255, 0.18) 35%,
-        transparent 70%
+        rgba(255, 255, 255, 0.22) 42%,
+        transparent 85%
       );
-      transform: translateX(-120%);
-      transition: transform 0.8s var(--ease-soft);
+      transform: translateX(-100%);
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .btn:hover::after {
-      transform: translateX(120%);
+      transform: translateX(100%);
     }
 
     .btn:hover {
@@ -428,15 +468,17 @@
     .stat {
       padding: 24px 18px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.028);
-      border: 1px solid rgba(255, 255, 255, 0.038);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(12px) saturate(1.06);
+      -webkit-backdrop-filter: blur(12px) saturate(1.06);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       min-height: 118px;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
     }
 
     .stat strong {
@@ -490,13 +532,14 @@
       width: 100%;
       height: auto;
       display: block;
+      filter: contrast(1.05) brightness(0.92) saturate(1.02);
     }
 
     .truck-work-photos {
       display: grid;
-      grid-template-columns: 1.22fr 0.78fr;
-      gap: clamp(28px, 4.5vw, 52px);
-      max-width: min(100%, 1020px);
+      grid-template-columns: 1.38fr 0.62fr;
+      gap: clamp(32px, 5vw, 60px);
+      max-width: min(100%, 1040px);
       margin: 0 auto;
       align-items: start;
     }
@@ -505,15 +548,29 @@
       max-width: none;
       margin: 0;
       border-radius: 26px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .truck-work-photos .truck-work-shot:first-child {
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
     }
 
     .truck-work-photos .truck-work-shot:first-child img {
-      transform: scale(1.02);
+      transform: scale(1.03);
       transform-origin: center;
     }
 
     .truck-work-photos .truck-work-shot:last-child {
-      margin-top: clamp(12px, 2vw, 28px);
+      margin-top: clamp(40px, 6vw, 88px);
+      max-width: 100%;
+      align-self: start;
+    }
+
+    .truck-work-photos .truck-work-shot:last-child img {
+      transform: scale(0.97);
+      transform-origin: top center;
     }
 
     .section-band {
@@ -534,6 +591,7 @@
     }
 
     .driver-photo {
+      position: relative;
       border-radius: 26px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.045);
@@ -550,6 +608,17 @@
       min-height: 280px;
       object-fit: cover;
       object-position: center 15%;
+      filter: contrast(1.04) brightness(0.93) saturate(1.02);
+    }
+
+    .driver-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 45%);
+      border-radius: inherit;
+      z-index: 1;
     }
 
     .driver-copy h2 {
@@ -562,7 +631,7 @@
 
     .driver-copy p {
       margin: 0;
-      color: rgba(183, 192, 212, 0.95);
+      color: rgba(255, 255, 255, 0.72);
       font-size: clamp(17px, 1.25vw, 19px);
       line-height: 1.75;
       max-width: 40rem;
@@ -603,17 +672,17 @@
       margin: 0;
     }
 
-    section {
+    section:not(.hero) {
       position: relative;
-      padding: 68px 0;
+      padding: 88px 0 100px;
     }
 
     .reveal-up {
       opacity: 0;
-      transform: translateY(34px);
+      transform: translate3d(0, 28px, 0);
       transition:
-        opacity var(--dur-mid) var(--ease-main),
-        transform var(--dur-mid) var(--ease-main);
+        opacity 0.85s var(--ease-main),
+        transform 0.85s var(--ease-main);
       will-change: opacity, transform;
     }
 
@@ -668,25 +737,32 @@
     .d-4 { transition-delay: 0.32s; }
     .d-5 { transition-delay: 0.4s; }
 
-    .glass,
     .card,
     .stat,
-    .dim {
+    .dim,
+    .contact-box {
       transition:
-        transform 0.35s var(--ease-soft),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
         border-color 0.35s ease,
         background 0.35s ease,
-        box-shadow 0.35s ease;
+        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .card.glass {
+      background: rgba(255, 255, 255, 0.032);
+      backdrop-filter: blur(14px) saturate(1.08);
+      -webkit-backdrop-filter: blur(14px) saturate(1.08);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
     }
 
     .card:hover,
     .stat:hover,
     .dim:hover,
-    .contact-box:hover,
-    .hero-main:hover {
-      transform: translateY(-4px);
-      border-color: rgba(255, 255, 255, 0.1);
-      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+    .contact-box:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.09);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
     }
 
     .hero-main {
@@ -763,19 +839,19 @@
     }
 
     .section-title {
-      margin: 0 auto 18px;
+      margin: 0 auto 26px;
       font-size: clamp(30px, 4.2vw, 44px);
-      line-height: 1.06;
-      letter-spacing: -0.032em;
+      line-height: 1.04;
+      letter-spacing: -0.034em;
       text-align: center;
       max-width: 920px;
       font-weight: 800;
     }
 
     .section-lead {
-      margin: 0 auto 36px;
+      margin: 0 auto 40px;
       max-width: 720px;
-      color: rgba(183, 192, 212, 0.92);
+      color: rgba(255, 255, 255, 0.66);
       font-size: clamp(16px, 1.2vw, 18px);
       line-height: 1.65;
       text-align: center;
@@ -810,7 +886,7 @@
 
     .card {
       padding: 28px 24px;
-      border: 1px solid rgba(255, 255, 255, 0.038);
+      border-radius: var(--radius-sm);
       text-align: center;
     }
 
@@ -847,11 +923,12 @@
     #services .card p {
       font-size: 16px;
       line-height: 1.58;
+      color: rgba(255, 255, 255, 0.68);
     }
 
     .card p,
     .card li {
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.68);
     }
 
     ul.clean {
@@ -879,7 +956,7 @@
     .contact-intro {
       margin: 0 auto 14px;
       max-width: 640px;
-      color: rgba(183, 192, 212, 0.95);
+      color: rgba(255, 255, 255, 0.78);
       font-size: clamp(16px, 1.2vw, 18px);
       line-height: 1.65;
     }
@@ -900,8 +977,10 @@
       padding: 26px 16px 24px;
       border-radius: 22px;
       text-align: center;
-      background: rgba(255, 255, 255, 0.026);
-      border: 1px solid rgba(255, 255, 255, 0.038);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(12px) saturate(1.06);
+      -webkit-backdrop-filter: blur(12px) saturate(1.06);
       min-height: 128px;
       display: flex;
       flex-direction: column;
@@ -948,10 +1027,16 @@
     .contact-box {
       padding: 36px 32px;
       text-align: center;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(16px) saturate(1.1);
+      -webkit-backdrop-filter: blur(16px) saturate(1.1);
+      border: 1px solid rgba(255, 255, 255, 0.055);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius);
       transition:
-        transform 0.35s var(--ease-soft),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
         border-color 0.35s ease,
-        box-shadow 0.35s ease;
+        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .phone {
@@ -963,7 +1048,7 @@
     }
 
     .contact-note {
-      color: var(--muted);
+      color: rgba(255, 255, 255, 0.68);
       margin: 0 auto 20px;
       max-width: 560px;
     }
@@ -1068,6 +1153,10 @@
       }
 
       .truck-work-photos .truck-work-shot:first-child img {
+        transform: none;
+      }
+
+      .truck-work-photos .truck-work-shot:last-child img {
         transform: none;
       }
 
@@ -1472,9 +1561,13 @@
       });
 
       var heroMain = document.querySelector(".hero-main");
+      var heroPhoto = document.querySelector(".hero-photo-col");
+      var parallaxAmp = 4;
+      var parallaxPhoto = 0.38;
 
       function resetParallax() {
         if (heroMain) heroMain.style.transform = "";
+        if (heroPhoto) heroPhoto.style.transform = "";
       }
 
       if (!reduceMotion && heroMain) {
@@ -1482,10 +1575,22 @@
           "mousemove",
           function (e) {
             if (window.innerWidth < 981) return;
+            if (!heroMain.classList.contains("is-visible")) return;
             var x = e.clientX / window.innerWidth - 0.5;
             var y = e.clientY / window.innerHeight - 0.5;
+            var mx = x * parallaxAmp;
+            var my = y * parallaxAmp;
             heroMain.style.transform =
-              "translate3d(" + x * 6 + "px, " + y * 6 + "px, 0)";
+              "translate3d(" + mx + "px, " + my + "px, 0)";
+            if (
+              heroPhoto &&
+              heroPhoto.classList.contains("is-visible")
+            ) {
+              var px = -mx * parallaxPhoto;
+              var py = -my * parallaxPhoto;
+              heroPhoto.style.transform =
+                "translate3d(" + px + "px, " + py + "px, 0) scale(1)";
+            }
           },
           { passive: true }
         );
