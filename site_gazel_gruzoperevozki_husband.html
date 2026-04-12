@@ -1218,11 +1218,19 @@
 
     .adv-closer {
       margin: 28px auto 0;
-      max-width: 560px;
+      max-width: min(76rem, 100%);
+      padding: 0 8px;
       text-align: center;
       font-size: clamp(15px, 1.15vw, 17px);
       line-height: 1.55;
       color: rgba(255, 255, 255, 0.72);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 960px) {
+      .adv-closer {
+        white-space: normal;
+      }
     }
 
     .reviews-kicker {
