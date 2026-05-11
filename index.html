@@ -5,1588 +5,120 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Грузоперевозки из Обнинска без посредников. Газель до 2,5 т, Дмитрий Алдошин, стаж с 2012. Обнинск, 150 км, по России." />
   <title>Грузоперевозки из Обнинска — Дмитрий Алдошин, Газель до 2,5 т</title>
-  <style>
-    :root {
-      --bg: #0b1020;
-      --bg-2: #121a2f;
-      --panel: rgba(255, 255, 255, 0.06);
-      --panel-strong: rgba(255, 255, 255, 0.09);
-      --line: rgba(255, 255, 255, 0.1);
-      --text: #f5f7fb;
-      --muted: #b7c0d4;
-      --accent: #d7a14a;
-      --accent-2: #f1c27a;
-      --ok: #8dd7a5;
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
-      --line-soft: rgba(255, 255, 255, 0.055);
-      --radius: 24px;
-      --radius-sm: 18px;
-      --maxw: 1180px;
-      --ease-main: cubic-bezier(0.22, 1, 0.36, 1);
-      --ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
-      --dur-fast: 0.45s;
-      --dur-mid: 0.75s;
-      --dur-slow: 1s;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      overflow-x: hidden;
-      font-family: Inter, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 20% 18%, rgba(215, 161, 74, 0.11), transparent 42%),
-        radial-gradient(circle at 82% 8%, rgba(70, 120, 255, 0.07), transparent 36%),
-        radial-gradient(circle at 50% 100%, rgba(15, 28, 52, 0.55), transparent 45%),
-        linear-gradient(180deg, #070b14 0%, #0a1222 42%, #0e1628 100%);
-      line-height: 1.55;
-    }
-
-    main p {
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 1.62;
-    }
-
-    p.hero-text,
-    .contact-intro,
-    .contact-note {
-      line-height: inherit;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    main {
-      text-align: center;
-    }
-
-    .link-inline {
-      color: var(--accent-2);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .link-inline:hover { color: var(--text); }
-
-    .container {
-      width: min(100% - 32px, var(--maxw));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(9, 16, 29, 0.72);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      transition:
-        background 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        backdrop-filter 0.35s ease;
-    }
-
-    header.is-scrolled {
-      background: rgba(10, 15, 30, 0.82);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38);
-      backdrop-filter: blur(22px) saturate(1.15);
-    }
-
-    .nav {
-      min-height: 92px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px 24px;
-    }
-
-    .logo {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.01em;
-    }
-
-    .logo-sep {
-      color: var(--muted);
-      font-weight: 700;
-      margin: 0 0.08em;
-    }
-
-    .logo-accent {
-      color: var(--accent-2);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 12px 32px;
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .nav-links a:hover {
-      color: var(--text);
-      text-shadow: 0 0 20px rgba(241, 194, 122, 0.22);
-    }
-
-    .hero {
-      position: relative;
-      padding: 104px 0 88px;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -12% -8% auto -8%;
-      height: min(520px, 72vh);
-      background:
-        radial-gradient(ellipse 70% 60% at 45% 20%, rgba(215, 161, 74, 0.14), transparent 55%),
-        radial-gradient(ellipse 50% 45% at 78% 12%, rgba(241, 194, 122, 0.09), transparent 50%),
-        radial-gradient(circle at 50% 40%, rgba(90, 140, 255, 0.06), transparent 55%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: auto 50% -80px auto;
-      transform: translateX(-50%);
-      width: min(92%, 920px);
-      height: 200px;
-      background: radial-gradient(
-        ellipse 80% 70% at 50% 0%,
-        rgba(215, 161, 74, 0.12),
-        transparent 70%
-      );
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero .container {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      align-items: stretch;
-    }
-
-    .glass {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.055);
-      border-radius: var(--radius);
-      box-shadow:
-        0 16px 48px rgba(0, 0, 0, 0.32),
-        0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-      backdrop-filter: blur(18px) saturate(1.12);
-      -webkit-backdrop-filter: blur(18px) saturate(1.12);
-    }
-
-    .hero-main {
-      padding: 48px 48px 44px;
-      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    .hero-split {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(28px, 4vw, 44px);
-      align-items: stretch;
-    }
-
-    .hero-photo-col {
-      position: relative;
-      border-radius: 28px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.045);
-      background: rgba(0, 0, 0, 0.45);
-      box-shadow:
-        0 24px 64px rgba(0, 0, 0, 0.45),
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-      min-height: 0;
-      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    .hero-photo-col::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(to top, rgba(0, 0, 0, 0.42) 0%, transparent 52%),
-        linear-gradient(
-          115deg,
-          rgba(5, 8, 16, 0.38) 0%,
-          rgba(5, 8, 16, 0.1) 48%,
-          rgba(5, 8, 16, 0.32) 100%
-        );
-      z-index: 1;
-    }
-
-    .hero-photo-col img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      min-height: 300px;
-      object-fit: cover;
-      object-position: center center;
-      position: relative;
-      z-index: 0;
-      filter: contrast(1.06) brightness(0.9) saturate(1.02);
-    }
-
-    .hero-copy-col {
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      text-align: center;
-    }
-
-    .hero-copy-col .badge {
-      align-self: center;
-    }
-
-    .hero-copy-col .hero-actions {
-      align-items: center;
-      width: 100%;
-    }
-
-    .hero-copy-col .hero-actions-row {
-      justify-content: center;
-    }
-
-    .hero-copy-col .hero-actions-sub {
-      justify-content: center;
-    }
-
-    .hero-copy-col h1.hero-heading-full {
-      text-align: center;
-    }
-
-    .hero-copy-col .hero-text {
-      text-align: center;
-    }
-
-    .hero-copy-col .stats-row {
-      width: 100%;
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .hero-copy-col .stats-row .stat strong,
-    .hero-copy-col .stats-row .stat strong .count-up {
-      font-size: clamp(26px, 3.2vw, 38px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.12;
-    }
-
-    .hero-heading-full {
-      margin-top: 0;
-      margin-bottom: 18px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(141, 215, 165, 0.11);
-      border: 1px solid rgba(141, 215, 165, 0.2);
-      color: #d1f5dd;
-      font-size: 14px;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(34px, 5.2vw, 56px);
-      line-height: 1.04;
-      letter-spacing: -0.02em;
-      margin: 0 0 22px;
-      max-width: 760px;
-    }
-
-    h1.hero-heading-full {
-      max-width: min(22em, 100%);
-      width: 100%;
-      line-height: 1.06;
-      letter-spacing: -0.022em;
-    }
-
-    h1.hero-heading-full .h1-line {
-      display: block;
-    }
-
-    .hero-text {
-      font-size: clamp(18px, 1.35vw, 20px);
-      color: rgba(255, 255, 255, 0.76);
-      max-width: min(62rem, 100%);
-      width: 100%;
-      margin: 0 0 36px;
-      line-height: 1.78;
-    }
-
-    .hero-text .hero-line-lead,
-    .hero-text .hero-line-nowrap {
-      white-space: nowrap;
-    }
-
-    .hero-text .hero-line {
-      display: block;
-      margin-bottom: 0.55em;
-    }
-
-    .hero-text .hero-line:last-child {
-      margin-bottom: 0;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-      width: 100%;
-    }
-
-    .hero-actions-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .hero-actions-sub {
-      margin-top: 4px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 10px 18px;
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .hero-actions-sub a {
-      color: var(--accent-2);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .hero-actions-sub a:hover {
-      color: var(--text);
-    }
-
-    .hero-actions-sub .dot {
-      opacity: 0.45;
-      user-select: none;
-    }
-
-    .btn {
-      position: relative;
-      z-index: 0;
-      overflow: hidden;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 14px 22px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      cursor: pointer;
-      isolation: isolate;
-      transition:
-        transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-        box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.28s ease,
-        background 0.28s ease;
-    }
-
-    .btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background: linear-gradient(
-        120deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.22) 42%,
-        transparent 85%
-      );
-      transform: translateX(-100%);
-      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .btn:hover::after {
-      transform: translateX(100%);
-    }
-
-    .btn:hover {
-      transform: translateY(-3px);
-    }
-
-    .btn:active {
-      transform: translateY(0) scale(0.98);
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #151515;
-      box-shadow: 0 14px 28px rgba(215, 161, 74, 0.2);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.04);
-      border-color: rgba(255, 255, 255, 0.12);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.07);
-      border-color: rgba(255, 255, 255, 0.18);
-    }
-
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: clamp(22px, 3.5vw, 40px);
-      align-items: stretch;
-    }
-
-    .stat {
-      padding: 24px 18px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.055);
-      backdrop-filter: blur(12px) saturate(1.06);
-      -webkit-backdrop-filter: blur(12px) saturate(1.06);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 118px;
-      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: clamp(26px, 3.2vw, 36px);
-      margin-bottom: 8px;
-      text-align: center;
-      line-height: 1.12;
-      max-width: 100%;
-      font-weight: 800;
-      letter-spacing: -0.025em;
-    }
-
-    .stat strong .count-up {
-      font: inherit;
-      display: inline;
-      transition: color 0.35s ease, text-shadow 0.35s ease;
-    }
-
-    .stat--price strong {
-      white-space: nowrap;
-      font-size: clamp(22px, 2.75vw, 34px);
-    }
-
-    .stat:hover strong .count-up {
-      color: var(--accent-2);
-      text-shadow: 0 0 18px rgba(241, 194, 122, 0.22);
-    }
-
-    .stat span {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      text-align: center;
-      line-height: 1.28;
-      max-width: 100%;
-      opacity: 0.88;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    .truck-work-shot {
-      position: relative;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 1px solid var(--line-soft);
-      background: rgba(0, 0, 0, 0.35);
-      box-shadow: var(--shadow);
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .truck-work-shot::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 55%, rgba(9, 16, 29, 0.18) 100%);
-      pointer-events: none;
-    }
-
-    .truck-work-shot img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: contrast(1.05) brightness(0.92) saturate(1.02);
-    }
-
-    .truck-work-photos {
-      display: grid;
-      grid-template-columns: 1.38fr 0.62fr;
-      gap: clamp(32px, 5vw, 60px);
-      max-width: min(100%, 1040px);
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    .truck-work-photos .truck-work-shot {
-      max-width: none;
-      margin: 0;
-      border-radius: 26px;
-      background: rgba(0, 0, 0, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(8px);
-    }
-
-    .truck-work-photos .truck-work-shot:first-child {
-      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
-    }
-
-    .truck-work-photos .truck-work-shot:first-child img {
-      transform: scale(1.03);
-      transform-origin: center;
-    }
-
-    .truck-work-photos .truck-work-shot:last-child {
-      margin-top: clamp(40px, 6vw, 88px);
-      max-width: 100%;
-      align-self: start;
-    }
-
-    .truck-work-photos .truck-work-shot:last-child img {
-      transform: scale(0.97);
-      transform-origin: top center;
-    }
-
-    .section-band {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
-      border-block: 1px solid rgba(255, 255, 255, 0.035);
-    }
-
-    .section-tight-top {
-      padding-top: 40px;
-    }
-
-    .driver-split {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: clamp(28px, 4vw, 48px);
-      align-items: center;
-      text-align: left;
-    }
-
-    .driver-photo {
-      position: relative;
-      border-radius: 26px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.045);
-      box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-      background: rgba(0, 0, 0, 0.35);
-    }
-
-    .driver-photo img {
-      display: block;
-      width: 100%;
-      height: auto;
-      min-height: 280px;
-      object-fit: cover;
-      object-position: center 15%;
-      filter: contrast(1.04) brightness(0.93) saturate(1.02);
-    }
-
-    .driver-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 45%);
-      border-radius: inherit;
-      z-index: 1;
-    }
-
-    .driver-copy h2 {
-      text-align: left;
-      margin: 0 0 16px;
-      font-size: clamp(26px, 3.4vw, 38px);
-      line-height: 1.12;
-      letter-spacing: -0.03em;
-    }
-
-    .driver-copy p {
-      margin: 0;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: clamp(17px, 1.25vw, 19px);
-      line-height: 1.75;
-      max-width: min(52rem, 100%);
-    }
-
-    .driver-copy .driver-line-lead {
-      white-space: nowrap;
-    }
-
-    .driver-copy .driver-line {
-      display: block;
-      margin-bottom: 0.65em;
-    }
-
-    .driver-copy .driver-line:last-child {
-      margin-bottom: 0;
-    }
-
-    @media (max-width: 800px) {
-      .hero-text .hero-line-lead,
-      .hero-text .hero-line-nowrap,
-      .hero-urgency.hero-urgency--one-line,
-      .driver-copy .driver-line-lead {
-        white-space: normal;
-      }
-    }
-
-    @media (max-width: 380px) {
-      .stat--price strong {
-        white-space: normal;
-        font-size: clamp(20px, 5.5vw, 28px);
-      }
-    }
-
-    .grid-5 {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 18px;
-    }
-
-    .adv-card {
-      padding: 22px 16px;
-      text-align: center;
-    }
-
-    .adv-card h3 {
-      margin: 0;
-    }
-
-    .cases-card h3 {
-      font-size: clamp(19px, 1.6vw, 22px);
-      margin-bottom: 10px;
-    }
-
-    .cases-card p {
-      font-size: 14px;
-      line-height: 1.45;
-      margin: 0;
-    }
-
-    section:not(.hero) {
-      position: relative;
-      padding: 88px 0 100px;
-    }
-
-    .reveal-up {
-      opacity: 0;
-      transform: translate3d(0, 28px, 0);
-      transition:
-        opacity 0.85s var(--ease-main),
-        transform 0.85s var(--ease-main);
-      will-change: opacity, transform;
-    }
-
-    .reveal-up.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal-scale {
-      opacity: 0;
-      transform: scale(0.96);
-      transition:
-        opacity var(--dur-mid) var(--ease-main),
-        transform var(--dur-mid) var(--ease-main);
-      will-change: opacity, transform;
-    }
-
-    .reveal-scale.is-visible {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .reveal-left {
-      opacity: 0;
-      transform: translateX(-34px);
-      transition:
-        opacity var(--dur-mid) var(--ease-main),
-        transform var(--dur-mid) var(--ease-main);
-    }
-
-    .reveal-left.is-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .reveal-right {
-      opacity: 0;
-      transform: translateX(34px);
-      transition:
-        opacity var(--dur-mid) var(--ease-main),
-        transform var(--dur-mid) var(--ease-main);
-    }
-
-    .reveal-right.is-visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .d-1 { transition-delay: 0.08s; }
-    .d-2 { transition-delay: 0.16s; }
-    .d-3 { transition-delay: 0.24s; }
-    .d-4 { transition-delay: 0.32s; }
-    .d-5 { transition-delay: 0.4s; }
-
-    .card,
-    .stat,
-    .dim,
-    .contact-box {
-      transition:
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.35s ease,
-        background 0.35s ease,
-        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .card.glass {
-      background: rgba(255, 255, 255, 0.032);
-      backdrop-filter: blur(14px) saturate(1.08);
-      -webkit-backdrop-filter: blur(14px) saturate(1.08);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28);
-    }
-
-    .card:hover,
-    .stat:hover,
-    .dim:hover,
-    .contact-box:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255, 255, 255, 0.09);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
-    }
-
-    .hero-main {
-      transform-style: preserve-3d;
-    }
-
-    .nav-links a {
-      position: relative;
-      transition: color 0.25s ease;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -10px;
-      width: 100%;
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      transform: scaleX(0);
-      transform-origin: center;
-      transition: transform 0.35s var(--ease-soft);
-      box-shadow: 0 0 16px rgba(241, 194, 122, 0.35);
-    }
-
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-    }
-
-    .stat strong,
-    .dim strong,
-    .phone {
-      transition:
-        color 0.35s ease,
-        text-shadow 0.35s ease,
-        transform 0.35s ease;
-    }
-
-    .stat:hover strong,
-    .dim:hover strong {
-      color: var(--accent-2);
-      text-shadow: 0 0 18px rgba(241, 194, 122, 0.18);
-    }
-
-    .quote {
-      position: relative;
-      font-size: 17px;
-      color: var(--text);
-      text-align: center;
-      transition: transform 0.35s ease, color 0.35s ease;
-    }
-
-    .card:hover .quote {
-      transform: translateY(-2px);
-      color: #ffffff;
-    }
-
-    .pulse-soft {
-      animation: pulseSoft 2.8s ease-in-out infinite;
-    }
-
-    @keyframes pulseSoft {
-      0%, 100% {
-        box-shadow: 0 14px 28px rgba(215, 161, 74, 0.18);
-      }
-      50% {
-        box-shadow: 0 18px 38px rgba(215, 161, 74, 0.28);
-      }
-    }
-
-    .count-up {
-      display: inline;
-    }
-
-    .section-title {
-      margin: 0 auto 26px;
-      font-size: clamp(30px, 4.2vw, 44px);
-      line-height: 1.04;
-      letter-spacing: -0.034em;
-      text-align: center;
-      max-width: 920px;
-      font-weight: 800;
-    }
-
-    .section-lead {
-      margin: 0 auto 40px;
-      max-width: 720px;
-      color: rgba(255, 255, 255, 0.66);
-      font-size: clamp(16px, 1.2vw, 18px);
-      line-height: 1.65;
-      text-align: center;
-    }
-
-    .section-text {
-      margin: 0 auto 30px;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      padding: 28px 24px;
-      border-radius: var(--radius-sm);
-      text-align: center;
-    }
-
-    .card-compact h3 {
-      font-size: 19px;
-      margin-bottom: 8px;
-    }
-
-    .card-compact p {
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      line-height: 1.15;
-    }
-
-    .card.adv-card h3 {
-      margin: 0;
-      font-size: clamp(14px, 1.05vw, 16px);
-      line-height: 1.35;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
-    }
-
-    #services .card h3 {
-      font-size: clamp(21px, 1.75vw, 26px);
-      letter-spacing: -0.02em;
-    }
-
-    #services .card p {
-      font-size: 16px;
-      line-height: 1.58;
-      color: rgba(255, 255, 255, 0.68);
-    }
-
-    .card p,
-    .card li {
-      color: rgba(255, 255, 255, 0.68);
-    }
-
-    ul.clean {
-      margin: 14px auto 0;
-      padding-left: 0;
-      list-style: none;
-      max-width: 520px;
-      text-align: center;
-    }
-
-    ul.clean li {
-      margin-bottom: 0.45em;
-    }
-
-    ul.clean li:last-child {
-      margin-bottom: 0;
-    }
-
-    .dimensions {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: clamp(14px, 2vw, 20px);
-    }
-
-    .contact-intro {
-      margin: 0 auto 14px;
-      max-width: 640px;
-      color: rgba(255, 255, 255, 0.78);
-      font-size: clamp(16px, 1.2vw, 18px);
-      line-height: 1.65;
-    }
-
-    @media (min-width: 981px) {
-      .hero-copy-col .stats-row {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (max-width: 1100px) and (min-width: 981px) {
-      .grid-5 {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .dim {
-      padding: 26px 16px 24px;
-      border-radius: 22px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.055);
-      backdrop-filter: blur(12px) saturate(1.06);
-      -webkit-backdrop-filter: blur(12px) saturate(1.06);
-      min-height: 128px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .dim strong {
-      display: block;
-      font-size: clamp(26px, 2.8vw, 34px);
-      margin-bottom: 8px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-    }
-
-    .dim span {
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.3;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      opacity: 0.88;
-    }
-
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 1fr 0.92fr;
-      gap: 26px;
-    }
-
-    .contact-box .hero-actions {
-      align-items: center;
-    }
-
-    .contact-box .hero-actions-row {
-      justify-content: center;
-    }
-
-    .contact-box .hero-actions-sub {
-      justify-content: center;
-    }
-
-    .contact-box {
-      padding: 36px 32px;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(16px) saturate(1.1);
-      -webkit-backdrop-filter: blur(16px) saturate(1.1);
-      border: 1px solid rgba(255, 255, 255, 0.055);
-      box-shadow: 0 14px 42px rgba(0, 0, 0, 0.3);
-      border-radius: var(--radius);
-      transition:
-        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        border-color 0.35s ease,
-        box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .phone {
-      margin: 8px auto 16px;
-      font-size: clamp(28px, 5vw, 44px);
-      font-weight: 800;
-      color: var(--accent-2);
-      letter-spacing: -0.03em;
-    }
-
-    .contact-note {
-      color: rgba(255, 255, 255, 0.68);
-      margin: 0 auto 20px;
-      max-width: 560px;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 12px;
-      color: var(--muted);
-      text-align: center;
-      justify-items: center;
-    }
-
-    .review-author {
-      margin-top: 14px;
-      color: var(--accent-2);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .footer {
-      padding: 36px 0 56px;
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
-    }
-
-    .hero-urgency {
-      margin: -8px 0 24px;
-      padding: 12px 16px;
-      max-width: 36rem;
-      font-size: clamp(15px, 1.15vw, 16px);
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.78);
-      text-align: center;
-      background: rgba(215, 161, 74, 0.07);
-      border: 1px solid rgba(215, 161, 74, 0.14);
-      border-radius: 14px;
-      border-left: 3px solid rgba(241, 194, 122, 0.45);
-    }
-
-    .hero-urgency.hero-urgency--one-line {
-      max-width: min(65rem, 100%);
-      margin-left: auto;
-      margin-right: auto;
-      white-space: nowrap;
-    }
-
-    .section-quick {
-      padding-top: 48px;
-      padding-bottom: 56px;
-    }
-
-    .quick-action-card {
-      max-width: min(72rem, 100%);
-      margin: 0 auto;
-      padding: 32px 28px 28px;
-      text-align: center;
-    }
-
-    .quick-action-title {
-      margin: 0 0 14px;
-      font-size: clamp(22px, 2.6vw, 28px);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      color: var(--text);
-      white-space: nowrap;
-    }
-
-    @media (max-width: 960px) {
-      .quick-action-title {
-        white-space: normal;
-      }
-    }
-
-    .quick-action-lead {
-      margin: 0 0 12px;
-      color: rgba(255, 255, 255, 0.72);
-      font-size: 16px;
-      line-height: 1.55;
-    }
-
-    .quick-action-list {
-      margin: 0 auto 22px;
-      padding: 0;
-      list-style: none;
-      max-width: 420px;
-      text-align: left;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .quick-action-list li {
-      position: relative;
-      padding-left: 1.1em;
-      margin-bottom: 0.4em;
-    }
-
-    .quick-action-list li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: rgba(241, 194, 122, 0.65);
-    }
-
-    .quick-action-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .section-bridge {
-      margin: -6px auto 28px;
-      max-width: 640px;
-      color: rgba(255, 255, 255, 0.68);
-      font-size: clamp(15px, 1.15vw, 17px);
-      line-height: 1.55;
-      text-align: center;
-    }
-
-    .driver-trust {
-      margin: 0 0 16px;
-      font-size: clamp(16px, 1.2vw, 18px);
-      line-height: 1.5;
-      font-weight: 600;
-      color: rgba(241, 194, 122, 0.92);
-      max-width: 38rem;
-    }
-
-    .adv-closer {
-      margin: 28px auto 0;
-      max-width: min(76rem, 100%);
-      padding: 0 8px;
-      text-align: center;
-      font-size: clamp(15px, 1.15vw, 17px);
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.72);
-      white-space: nowrap;
-    }
-
-    @media (max-width: 960px) {
-      .adv-closer {
-        white-space: normal;
-      }
-    }
-
-    .reviews-kicker {
-      margin: -8px auto 24px;
-      max-width: 640px;
-      font-size: clamp(15px, 1.15vw, 17px);
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.65);
-      text-align: center;
-    }
-
-    .review-meta {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      gap: 6px 8px;
-      margin-bottom: 12px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--accent-2);
-    }
-
-    .review-dot {
-      opacity: 0.45;
-    }
-
-    .review-city {
-      color: rgba(255, 255, 255, 0.85);
-    }
-
-    .review-case {
-      color: rgba(255, 255, 255, 0.55);
-      font-weight: 600;
-    }
-
-    .how-steps {
-      margin: 8px auto 0;
-      padding: 0;
-      list-style: none;
-      max-width: 560px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .how-step {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px 20px 20px 18px;
-      text-align: left;
-      border-radius: var(--radius-sm);
-    }
-
-    .how-step-num {
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      font-weight: 800;
-      font-size: 15px;
-      background: rgba(215, 161, 74, 0.15);
-      color: var(--accent-2);
-      border: 1px solid rgba(215, 161, 74, 0.22);
-    }
-
-    .how-step-body {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      font-size: 15px;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.72);
-    }
-
-    .how-step-body strong {
-      color: var(--text);
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    .contact-now {
-      margin: 0 auto 18px;
-      max-width: 520px;
-      font-size: 16px;
-      line-height: 1.5;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.78);
-    }
-
-    .sticky-cta {
-      display: none;
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 60;
-      padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0));
-      gap: 10px;
-      justify-content: center;
-      align-items: stretch;
-      flex-wrap: nowrap;
-      background: linear-gradient(180deg, transparent 0%, rgba(7, 11, 20, 0.92) 28%);
-      background-color: rgba(9, 16, 29, 0.92);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(16px) saturate(1.1);
-      -webkit-backdrop-filter: blur(16px) saturate(1.1);
-      box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.35);
-    }
-
-    .sticky-cta .btn {
-      flex: 1;
-      min-height: 48px;
-      padding: 12px 14px;
-      font-size: 15px;
-    }
-
-    @media (max-width: 900px) {
-      .sticky-cta {
-        display: flex;
-      }
-
-      body {
-        padding-bottom: calc(72px + env(safe-area-inset-bottom, 0));
-      }
-    }
-
-    @media (min-width: 901px) {
-      .sticky-cta {
-        display: none !important;
-      }
-    }
-
-    @media (max-width: 980px) {
-      .hero-text {
-        max-width: min(62rem, 100%);
-      }
-
-      .hero-photo-col {
-        max-width: 480px;
-        margin-inline: auto;
-        width: 100%;
-      }
-
-      .hero-photo-col img {
-        min-height: 320px;
-      }
-
-      .hero-grid,
-      .grid-3,
-      .grid-2,
-      .dimensions,
-      .contact-wrap,
-      .driver-split {
-        grid-template-columns: 1fr;
-      }
-
-      .driver-copy h2,
-      .driver-copy p {
-        text-align: center;
-      }
-
-      .driver-copy p {
-        margin-inline: auto;
-      }
-
-      .driver-photo {
-        max-width: 420px;
-        margin-inline: auto;
-      }
-
-      .truck-work-photos {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-
-      .truck-work-photos .truck-work-shot:last-child {
-        margin-top: 0;
-      }
-
-      .truck-work-photos .truck-work-shot:first-child img {
-        transform: none;
-      }
-
-      .truck-work-photos .truck-work-shot:last-child img {
-        transform: none;
-      }
-
-      .grid-5 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .grid-4 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .stats-row {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .nav-links { display: none; }
-    }
-
-    @media (max-width: 640px) {
-      .hero { padding-top: 42px; }
-
-      .hero-main,
-      .card,
-      .contact-box {
-        padding: 22px;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-actions {
-        align-items: stretch;
-      }
-
-      .hero-actions-row {
-        flex-direction: column;
-      }
-
-      .stats-row {
-        grid-template-columns: 1fr;
-      }
-
-      .grid-4 {
-        grid-template-columns: 1fr;
-      }
-
-      .grid-5 {
-        grid-template-columns: 1fr;
-      }
-
-      .truck-work-photos {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy-col .stats-row {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy-col .hero-actions {
-        align-items: stretch;
-      }
-
-      .hero-copy-col .hero-actions-row {
-        width: 100%;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      * {
-        animation: none !important;
-        transition: none !important;
-        scroll-behavior: auto !important;
-      }
-
-      .reveal-up,
-      .reveal-scale,
-      .reveal-left,
-      .reveal-right {
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
     <div class="container nav">
       <div class="logo">Грузоперевозки<span class="logo-sep">|</span><span class="logo-accent">Дмитрий</span></div>
-      <nav class="nav-links">
-        <a href="#about">О машине</a>
-        <a href="#cases">Когда звонят</a>
-        <a href="#services">Задачи</a>
-        <a href="#advantages">Почему Дмитрий</a>
+      <nav class="nav-links" aria-label="Основное меню">
+        <a href="#trust">О сервисе</a>
+        <a href="#services">Услуги</a>
+        <a href="#about">Газель</a>
+        <a href="#how-it-works">Как работаем</a>
         <a href="#reviews">Отзывы</a>
-        <a href="#contacts">Связаться с Дмитрием</a>
+        <a href="#contacts">Контакты</a>
       </nav>
+      <a class="btn btn-primary btn-sm nav-cta" href="tel:+79533135505">Позвонить</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-main glass reveal-left">
-          <div class="hero-split">
-            <div class="hero-photo-col reveal-scale d-1">
-              <img src="машина вид спереди.png" alt="Газель Дмитрия — рабочая машина для перевозок" width="1200" height="900" loading="eager" decoding="async" />
-            </div>
-            <div class="hero-copy-col">
-              <div class="badge">Город, межгород, Россия — прямой контакт с водителем</div>
-              <h1 class="hero-heading-full reveal-up">Грузоперевозки из Обнинска без посредников и лишней суеты</h1>
-              <p class="hero-text reveal-up d-1">
-                <span class="hero-line hero-line-lead">Дмитрий Алдошин — профессиональный водитель с 2012 года.</span>
-                <span class="hero-line">Основное направление — Обнинск и радиус до 150 км.</span>
-                <span class="hero-line">Работает по России, включая ЛНР и ДНР.</span>
-                <span class="hero-line hero-line-nowrap">Если машина находится рядом с вашим грузом — выезд возможен быстрее.</span>
-              </p>
-              <p class="hero-urgency hero-urgency--one-line reveal-up d-1">Часто в рейсе — если ваш груз по маршруту, выезд возможен быстрее обычного.</p>
-
-              <div class="hero-actions reveal-up d-2">
-                <div class="hero-actions-row">
-                  <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
-                  <a class="btn btn-secondary" href="#contacts">Уточнить маршрут и стоимость</a>
-                </div>
-                <div class="hero-actions-sub">
-                  <a href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
-                </div>
-              </div>
-
-              <div class="stats-row reveal-up d-3">
-                <div class="stat">
-                  <strong>14 лет</strong>
-                  <span>стаж</span>
-                </div>
-                <div class="stat">
-                  <strong>без аварий</strong>
-                  <span>на линии</span>
-                </div>
-                <div class="stat">
-                  <strong>2,5 т</strong>
-                  <span>груз</span>
-                </div>
-                <div class="stat stat--price">
-                  <strong><span class="count-up" data-count="55" data-prefix="от " data-suffix=" ₽/км"></span></strong>
-                  <span>межгород</span>
-                </div>
-              </div>
-            </div>
+      <div class="container hero-layout">
+        <div class="hero-visual reveal-scale d-1">
+          <img src="машина вид спереди.png" alt="Газель Дмитрия — рабочая машина для перевозок" width="1200" height="900" loading="eager" decoding="async" />
+        </div>
+        <div class="hero-content reveal-up">
+          <div class="hero-badge"><span class="hero-badge-dot" aria-hidden="true"></span> Сервис на линии · Обнинск и регион</div>
+          <h1>Грузоперевозки без стресса</h1>
+          <p class="hero-tagline">Быстро. Аккуратно. По честной цене.</p>
+          <p class="hero-desc">
+            Дмитрий Алдошин — профессиональный водитель с 2012 года. Поможем перевезти мебель, технику и личные вещи;
+            при необходимости — <strong>выезд в день обращения</strong>, если машина рядом с маршрутом.
+            Обнинск и до 150 км, по России без посредников — прямой контакт с тем, кто повезёт груз.
+            Межгород — <span class="count-up" data-count="55" data-prefix="от " data-suffix=" ₽/км"></span>.
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary pulse-soft" href="#contacts">Рассчитать стоимость</a>
+            <a class="btn btn-secondary" href="tel:+79533135505">Позвонить</a>
           </div>
+          <ul class="hero-micro">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Прямой контакт с водителем
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Аккуратная погрузка
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              Понятные сроки
+            </li>
+          </ul>
+          <p class="hero-desc" style="margin-top: 12px; margin-bottom: 0; font-size: 15px; color: var(--muted);">
+            Также работа по всей России, включая новые регионы. <a class="link-inline" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+          </p>
         </div>
       </div>
     </section>
 
-    <section id="quick-action" class="section-quick">
+    <section id="trust" class="trust-section">
       <div class="container">
-        <div class="quick-action-card glass reveal-up">
-          <h2 class="quick-action-title">Можно написать прямо сейчас и уточнить задачу</h2>
-          <p class="quick-action-lead">Опишите маршрут и груз — Дмитрий ответит лично и скажет:</p>
-          <ul class="quick-action-list">
-            <li>сможет ли взять заказ</li>
-            <li>когда возможен выезд</li>
-            <li>ориентир по стоимости</li>
-          </ul>
-          <div class="quick-action-actions">
-            <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
-            <a class="btn btn-secondary" href="#contacts">Написать</a>
+        <div class="section-head reveal-up">
+          <h2 class="section-title">Надёжно, как у проверенного подрядчика</h2>
+          <p class="section-lead">Без диспетчеров и лишних звеньев — вы сразу говорите с человеком, который отвечает за результат.</p>
+        </div>
+        <div class="trust-grid">
+          <article class="trust-item glass reveal-scale d-1">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3>Один исполнитель</h3>
+            <p>Тот же водитель на связи, на погрузке и на выгрузке — никто не передаёт «на сторону».</p>
+          </article>
+          <article class="trust-item glass reveal-scale d-2">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <h3>Понятная цена</h3>
+            <p>Уточняем маршрут и объём — называем условия до выезда, без скрытых доплат.</p>
+          </article>
+          <article class="trust-item glass reveal-scale d-3">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 7v5h-6v-5z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <h3>Опыт с 2012 года</h3>
+            <p>Межгород, переезды, паллеты — спокойное вождение и бережное отношение к вещам.</p>
+          </article>
+          <article class="trust-item glass reveal-scale d-4">
+            <div class="trust-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <h3>Быстрый ответ</h3>
+            <p>Обычно отвечаем в течение короткого времени — можно звонить или написать.</p>
+          </article>
+        </div>
+        <div class="stats-strip reveal-up">
+          <div class="stat-item">
+            <strong><span class="count-up" data-count="100" data-prefix="" data-suffix="+"></span></strong>
+            <span>выполненных перевозок</span>
+          </div>
+          <div class="stat-item">
+            <strong>≈15 мин</strong>
+            <span>среднее время ответа</span>
+          </div>
+          <div class="stat-item">
+            <strong>Ежедневно</strong>
+            <span>работа без выходных</span>
+          </div>
+          <div class="stat-item">
+            <strong>В день заявки</strong>
+            <span>выезд при наличии машины</span>
           </div>
         </div>
       </div>
@@ -1616,20 +148,32 @@
         <h2 class="section-title reveal-up">Когда чаще всего обращаются</h2>
         <p class="section-bridge reveal-up d-1">Если вы узнали свою ситуацию — можно сразу написать и обсудить.</p>
         <div class="grid-4">
-          <div class="card glass card-compact cases-card reveal-scale d-1">
-            <h3>🚚 Срочный выезд</h3>
+          <div class="card glass cases-card reveal-scale d-1">
+            <h3>
+              <span class="case-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              Срочный выезд
+            </h3>
             <p>Когда важно не откладывать и нужен быстрый старт</p>
           </div>
-          <div class="card glass card-compact cases-card reveal-scale d-2">
-            <h3>📦 Переезд и личные вещи</h3>
+          <div class="card glass cases-card reveal-scale d-2">
+            <h3>
+              <span class="case-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
+              Переезд и вещи
+            </h3>
             <p>Аккуратная погрузка и спокойная доставка</p>
           </div>
-          <div class="card glass card-compact cases-card reveal-scale d-3">
-            <h3>🏬 Паллеты и товар</h3>
+          <div class="card glass cases-card reveal-scale d-3">
+            <h3>
+              <span class="case-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg></span>
+              Паллеты и товар
+            </h3>
             <p>Для складов, магазинов и поставок</p>
           </div>
-          <div class="card glass card-compact cases-card reveal-scale d-4">
-            <h3>🛣️ Межгород напрямую</h3>
+          <div class="card glass cases-card reveal-scale d-4">
+            <h3>
+              <span class="case-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></span>
+              Межгород напрямую
+            </h3>
             <p>Без диспетчеров и посредников</p>
           </div>
         </div>
@@ -1638,7 +182,7 @@
 
     <section id="truck-work">
       <div class="container">
-        <h2 class="section-title reveal-up">Газель Дмитрия в реальной работе</h2>
+        <h2 class="section-title reveal-up">Газель в реальной работе</h2>
         <p class="section-lead reveal-up d-1">Задняя, боковая и верхняя погрузка. До 13 европалет и 2500 кг.</p>
         <div class="truck-work-photos">
           <div class="truck-work-shot reveal-scale d-2">
@@ -1681,33 +225,48 @@
 
     <section id="services">
       <div class="container">
-        <h2 class="section-title reveal-up">Какие задачи чаще всего доверяют Дмитрию</h2>
+        <div class="section-head reveal-up">
+          <h2 class="section-title">Услуги под вашу задачу</h2>
+          <p class="section-lead">Одинаковый аккуратный формат: оценка, согласование, перевозка — без лишнего шума.</p>
+        </div>
         <div class="grid-3">
-          <div class="card glass reveal-scale d-1">
+          <article class="card glass service-card reveal-scale d-1">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>
+            </div>
             <h3>Переезды и личные вещи</h3>
             <p>Квартирные и офисные переезды. Спокойная погрузка и доставка без лишней суеты.</p>
-          </div>
-          <div class="card glass reveal-scale d-2">
-            <h3>Товар, паллеты и поставки</h3>
+            <a class="btn btn-primary btn-sm" href="#contacts">Рассчитать стоимость</a>
+          </article>
+          <article class="card glass service-card reveal-scale d-2">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+            </div>
+            <h3>Товар, паллеты, поставки</h3>
             <p>Магазины, склады, небольшие партии. Один исполнитель — без цепочки посредников.</p>
-          </div>
-          <div class="card glass reveal-scale d-3">
-            <h3>Дальние и непростые маршруты</h3>
-            <p>Межгород, нестандартные направления, ЛНР и ДНР. Опыт, дисциплина, уверенное вождение.</p>
-          </div>
+            <a class="btn btn-primary btn-sm" href="#contacts">Рассчитать стоимость</a>
+          </article>
+          <article class="card glass service-card reveal-scale d-3">
+            <div class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18"/><path d="M5 6a2 2 0 012-2h10a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6z"/><path d="M7 15h.01M12 15h5"/><path d="M9 19l2-3h4l2 3"/></svg>
+            </div>
+            <h3>Дальние маршруты</h3>
+            <p>Межгород и нестандартные направления, в том числе новые регионы. Дисциплина и уверенное вождение.</p>
+            <a class="btn btn-primary btn-sm" href="#contacts">Рассчитать стоимость</a>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="advantages">
       <div class="container">
-        <h2 class="section-title reveal-up">Почему обращаются именно к Дмитрию</h2>
+        <h2 class="section-title reveal-up">Почему обращаются к Дмитрию</h2>
         <div class="grid-5">
           <div class="card glass adv-card reveal-scale d-1">
             <h3>Прямой контакт без посредников</h3>
           </div>
           <div class="card glass adv-card reveal-scale d-2">
-            <h3>Понятные условия без «сюрпризов»</h3>
+            <h3>Понятные условия без сюрпризов</h3>
           </div>
           <div class="card glass adv-card reveal-scale d-3">
             <h3>Аккуратная работа с грузом</h3>
@@ -1728,96 +287,102 @@
         <h2 class="section-title reveal-up">Что говорят клиенты</h2>
         <p class="reviews-kicker reveal-up d-1">Отзывы от людей, которые уже работали с Дмитрием</p>
         <div class="grid-3">
-          <div class="card glass reveal-scale d-1">
+          <div class="card glass card-review reveal-scale d-1">
             <div class="review-meta"><span class="review-city">Обнинск</span><span class="review-dot" aria-hidden="true">·</span><span class="review-case">срочно, мебель межгород</span></div>
-            <div class="quote">«Нужно было срочно перевезти мебель из Обнинска в Калугу: два дивана и шкаф. Дмитрий ответил за 15 минут, приехал к 10:00, помог снести из подъезда и через 3 часа уже разгружались на месте — без задержек и ссор с грузчиками.»</div>
+            <p class="quote">«Нужно было срочно перевезти мебель из Обнинска в Калугу: два дивана и шкаф. Дмитрий ответил за 15 минут, приехал к 10:00, помог снести из подъезда и через 3 часа уже разгружались на месте — без задержек и ссор с грузчиками.»</p>
             <div class="review-author">Обнинск → Калуга, мебель</div>
           </div>
-          <div class="card glass reveal-scale d-2">
+          <div class="card glass card-review reveal-scale d-2">
             <div class="review-meta"><span class="review-city">Калуга</span><span class="review-dot" aria-hidden="true">·</span><span class="review-case">паллеты, открытие магазина</span></div>
-            <div class="quote">«Из Калуги везли 6 паллет на точку к открытию магазина. Важны были окно по времени и акт приёмки. Дмитрий был на связи в дороге, приехал в Обнинск в согласованный слот, паллеты приняли с первого раза.»</div>
+            <p class="quote">«Из Калуги везли 6 паллет на точку к открытию магазина. Важны были окно по времени и акт приёмки. Дмитрий был на связи в дороге, приехал в Обнинск в согласованный слот, паллеты приняли с первого раза.»</p>
             <div class="review-author">Калуга → Обнинск, 6 паллет</div>
           </div>
-          <div class="card glass reveal-scale d-3">
+          <div class="card glass card-review reveal-scale d-3">
             <div class="review-meta"><span class="review-city">Москва</span><span class="review-dot" aria-hidden="true">·</span><span class="review-case">межгород, сборный груз</span></div>
-            <div class="quote">«Заказывали межгород из Москвы: техника и коробки, нужен был прямой контакт без диспетчеров. Один звонок — Дмитрий сам подтвердил маршрут и цену, на выгрузке в Туле подождали документы 20 минут — без нервов.»</div>
+            <p class="quote">«Заказывали межгород из Москвы: техника и коробки, нужен был прямой контакт без диспетчеров. Один звонок — Дмитрий сам подтвердил маршрут и цену, на выгрузке в Туле подождали документы 20 минут — без нервов.»</p>
             <div class="review-author">Москва → Тула, сборный груз</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="how-it-works">
+    <section id="how-it-works" class="how-section section-band">
       <div class="container">
-        <h2 class="section-title reveal-up">Как проходит работа</h2>
-        <ol class="how-steps reveal-up d-1">
-          <li class="how-step glass">
-            <span class="how-step-num">1</span>
-            <div class="how-step-body">
-              <strong>Вы пишете или звоните</strong>
-              <span>→ описываете маршрут и груз</span>
-            </div>
-          </li>
-          <li class="how-step glass">
-            <span class="how-step-num">2</span>
-            <div class="how-step-body">
-              <strong>Дмитрий отвечает</strong>
-              <span>→ уточняет детали и называет условия</span>
-            </div>
-          </li>
-          <li class="how-step glass">
-            <span class="how-step-num">3</span>
-            <div class="how-step-body">
-              <strong>Договариваетесь</strong>
-              <span>→ согласуете время и маршрут</span>
-            </div>
-          </li>
-          <li class="how-step glass">
-            <span class="how-step-num">4</span>
-            <div class="how-step-body">
-              <strong>Перевозка</strong>
-              <span>→ груз доставляется без лишней суеты</span>
-            </div>
-          </li>
-        </ol>
+        <div class="section-head reveal-up">
+          <h2 class="section-title">Как мы работаем</h2>
+          <p class="section-lead">Простая схема — вы тратите минуты на заявку, дальше мы берём процесс на себя.</p>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card glass reveal-scale d-1">
+            <div class="step-num">1</div>
+            <h3>Оставляете заявку</h3>
+            <p>Звонок или сообщение: маршрут, объём, желаемое время.</p>
+          </article>
+          <article class="step-card glass reveal-scale d-2">
+            <div class="step-num">2</div>
+            <h3>Уточняем детали и стоимость</h3>
+            <p>Дмитрий отвечает лично: сроки, возможность выезда, ориентир по цене.</p>
+          </article>
+          <article class="step-card glass reveal-scale d-3">
+            <div class="step-num">3</div>
+            <h3>Приезжаем в удобное время</h3>
+            <p>Согласуем окно погрузки и маршрут без суеты.</p>
+          </article>
+          <article class="step-card glass reveal-scale d-4">
+            <div class="step-num">4</div>
+            <h3>Аккуратно перевозим вещи</h3>
+            <p>Погрузка, дорога и выгрузка — ответственность на исполнителе.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="final-cta" class="final-cta">
+      <div class="container">
+        <div class="final-cta-inner reveal-up">
+          <h2>Нужно перевезти вещи уже сегодня?</h2>
+          <p>Напишите маршрут и что везём — быстро рассчитаем стоимость и предложим удобное время. Прямой контакт, без посредников.</p>
+          <div class="final-cta-actions">
+            <a class="btn btn-primary pulse-soft" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать в Max</a>
+            <a class="btn btn-secondary" href="tel:+79533135505">Позвонить</a>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="contacts">
       <div class="container contact-wrap">
         <div class="contact-box glass reveal-left">
-          <h2 class="section-title">Нужен водитель, который отвечает лично и доводит перевозку до результата?</h2>
-          <p class="contact-intro">Ответит сам Дмитрий. Без диспетчеров и посредников.</p>
+          <h2 class="section-title">Свяжитесь с Дмитрием</h2>
+          <p class="contact-intro">Ответит сам. Без диспетчеров — обсудите условия напрямую.</p>
           <p class="contact-note">
             Напишите маршрут, объём и желаемые сроки — Дмитрий уточнит детали и предложит понятный вариант без лишних этапов.
           </p>
-          <div class="phone">+7 953 313-55-05</div>
+          <div class="phone"><a href="tel:+79533135505">+7 953 313-55-05</a></div>
           <p class="contact-now">Можно написать прямо сейчас — ответ обычно в течение короткого времени.</p>
-          <div class="hero-actions">
-            <div class="hero-actions-row">
-              <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
-              <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Уточнить маршрут и стоимость</a>
-            </div>
-            <div class="hero-actions-sub">
-              <a href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать Дмитрию</a>
-              <span class="dot" aria-hidden="true">·</span>
-              <a href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
-            </div>
+          <div class="contact-actions">
+            <a class="btn btn-primary pulse-soft" href="tel:+79533135505">Позвонить</a>
+            <a class="btn btn-secondary" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Уточнить маршрут и стоимость</a>
+          </div>
+          <div class="contact-actions-sub">
+            <a href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать в Max</a>
+            <span class="dot" aria-hidden="true">·</span>
+            <a href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
           </div>
         </div>
 
         <div class="contact-box glass reveal-right d-1">
-          <h3 style="margin-top:0; font-size:28px;">Коротко по делу</h3>
+          <h3 class="contact-side-title">Коротко по делу</h3>
           <div class="contact-list">
-            <div>🚚 Газель до 2,5 тонн, объём кузова 32 м³</div>
-            <div>📦 Вместимость до 13 европалет</div>
-            <div>🔧 Погрузка: задняя, верхняя, боковая</div>
-            <div>💰 Стоимость доставки — от 55 рублей за км</div>
-            <div>🛣️ Обнинск и радиус до 150 км, а также вся Россия и новые территории</div>
-            <div>🧭 Профессиональный стаж с 2012 года</div>
-            <div>📞 Прямой контакт без посредников</div>
-            <div id="max">💬 <a class="link-inline" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать Дмитрию</a> в Max</div>
-            <div id="vk">🔗 ВКонтакте — <a class="link-inline" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">страница Дмитрия</a></div>
+            <div>Газель до 2,5 тонн, объём кузова 32 м³</div>
+            <div>Вместимость до 13 европалет</div>
+            <div>Погрузка: задняя, верхняя, боковая</div>
+            <div>Стоимость доставки — от 55 рублей за км (межгород)</div>
+            <div>Обнинск и радиус до 150 км, а также вся Россия и новые территории</div>
+            <div>Профессиональный стаж с 2012 года</div>
+            <div>Прямой контакт без посредников</div>
+            <div id="max"><a class="link-inline" href="https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk" target="_blank" rel="noopener noreferrer">Написать Дмитрию</a> в Max</div>
+            <div id="vk">ВКонтакте — <a class="link-inline" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">страница Дмитрия</a></div>
           </div>
         </div>
       </div>
@@ -1826,20 +391,16 @@
 
   <div class="sticky-cta" role="navigation" aria-label="Быстрая связь">
     <a class="btn btn-primary sticky-cta-call" href="tel:+79533135505">Позвонить</a>
-    <a class="btn btn-secondary sticky-cta-write" href="#contacts">Написать</a>
+    <a class="btn btn-secondary sticky-cta-write" href="#contacts">Заявка</a>
   </div>
 
   <footer class="footer">
     <div class="container reveal-up">
-      Дмитрий Алдошин • Грузоперевозки на Газели • Спокойная работа, точные сроки, прямой контакт
+      Дмитрий Алдошин · Грузоперевозки на Газели · Спокойная работа, точные сроки, прямой контакт
     </div>
   </footer>
   <script>
     (function () {
-      /* =========================
-         PREMIUM INTERACTIONS
-      ========================= */
-
       var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       var supportsIO = "IntersectionObserver" in window;
 
@@ -1861,7 +422,7 @@
               }
             });
           },
-          { threshold: 0.16, rootMargin: "0px 0px -40px 0px" }
+          { threshold: 0.12, rootMargin: "0px 0px -32px 0px" }
         );
         revealItems.forEach(function (item) {
           revealObserver.observe(item);
@@ -1871,7 +432,7 @@
       var header = document.querySelector("header");
       var handleHeaderScroll = function () {
         if (!header) return;
-        if (window.scrollY > 20) {
+        if (window.scrollY > 12) {
           header.classList.add("is-scrolled");
         } else {
           header.classList.remove("is-scrolled");
@@ -1892,50 +453,12 @@
         });
       });
 
-      var heroMain = document.querySelector(".hero-main");
-      var heroPhoto = document.querySelector(".hero-photo-col");
-      var parallaxAmp = 4;
-      var parallaxPhoto = 0.38;
-
-      function resetParallax() {
-        if (heroMain) heroMain.style.transform = "";
-        if (heroPhoto) heroPhoto.style.transform = "";
-      }
-
-      if (!reduceMotion && heroMain) {
-        window.addEventListener(
-          "mousemove",
-          function (e) {
-            if (window.innerWidth < 981) return;
-            if (!heroMain.classList.contains("is-visible")) return;
-            var x = e.clientX / window.innerWidth - 0.5;
-            var y = e.clientY / window.innerHeight - 0.5;
-            var mx = x * parallaxAmp;
-            var my = y * parallaxAmp;
-            heroMain.style.transform =
-              "translate3d(" + mx + "px, " + my + "px, 0)";
-            if (
-              heroPhoto &&
-              heroPhoto.classList.contains("is-visible")
-            ) {
-              var px = -mx * parallaxPhoto;
-              var py = -my * parallaxPhoto;
-              heroPhoto.style.transform =
-                "translate3d(" + px + "px, " + py + "px, 0) scale(1)";
-            }
-          },
-          { passive: true }
-        );
-        window.addEventListener("mouseleave", resetParallax);
-        window.addEventListener("blur", resetParallax);
-      }
-
       function animateCount(el) {
         var target = +el.dataset.count;
         if (Number.isNaN(target)) return;
         var suffix = el.dataset.suffix || "";
         var prefix = el.dataset.prefix || "";
-        var duration = 1400;
+        var duration = 1200;
         var start = performance.now();
         function step(now) {
           var progress = Math.min((now - start) / duration, 1);
@@ -1970,7 +493,7 @@
               }
             });
           },
-          { threshold: 0.5 }
+          { threshold: 0.35 }
         );
         countElements.forEach(function (el) {
           countObserver.observe(el);
@@ -1985,17 +508,18 @@
       var navLinks = document.querySelectorAll(".nav-links a");
       var activateNav = function () {
         var currentId = "";
+        var scrollPad = 100;
         sections.forEach(function (section) {
-          var top = section.offsetTop - 120;
+          var top = section.offsetTop - scrollPad;
           if (window.scrollY >= top) {
             currentId = section.getAttribute("id") || "";
           }
         });
         navLinks.forEach(function (link) {
-          link.style.color = "";
-          if (currentId && link.getAttribute("href") === "#" + currentId) {
-            link.style.color = "#f5f7fb";
-          }
+          link.classList.toggle(
+            "is-active",
+            !!(currentId && link.getAttribute("href") === "#" + currentId)
+          );
         });
       };
       activateNav();
