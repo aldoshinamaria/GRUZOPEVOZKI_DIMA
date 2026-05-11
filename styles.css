@@ -2216,6 +2216,18 @@ h3.contact-side-title {
   }
 }
 
+.footer--simple {
+  text-align: center;
+}
+
+.footer--simple .footer-simple-inner {
+  padding: 44px 0 52px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
 /* Sticky mobile CTA */
 
 .sticky-cta {
@@ -2225,6 +2237,7 @@ h3.contact-side-title {
   right: 0;
   bottom: 0;
   z-index: 60;
+  margin: 0;
   padding: 10px 14px calc(12px + env(safe-area-inset-bottom, 0));
   gap: 10px;
   justify-content: center;
