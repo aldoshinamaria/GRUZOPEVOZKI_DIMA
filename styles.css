@@ -12,6 +12,7 @@
   --accent: #0e3d5c;
   --accent-hover: #0a2f47;
   --accent-soft: rgba(14, 61, 92, 0.08);
+  --review-star: #c4a035;
   --warm: #b8732c;
   --warm-hover: #9a6124;
   --success: #027a48;
@@ -1505,23 +1506,55 @@ button.review-form-submit {
   font-weight: 600;
 }
 
+.review-case-line {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+.review-card-byline {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-bottom: 0;
+}
+
+.review-card-byline .review-city {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  color: var(--text);
+  line-height: 1.2;
+}
+
 .review-card-stars {
   display: flex;
   align-items: center;
-  gap: 5px;
-  margin: 0 0 12px;
-  color: var(--accent);
+  gap: 2px;
+  margin: 0;
+  color: var(--review-star);
+  line-height: 0;
 }
 
 .review-card-stars svg {
-  width: 17px;
-  height: 17px;
+  width: 11px;
+  height: 11px;
   flex-shrink: 0;
-  opacity: 0.92;
+  opacity: 1;
 }
 
 .card-review .review-meta {
   margin-bottom: 8px;
+}
+
+.card-review .review-card-byline + .review-case-line {
+  margin-top: 2px;
 }
 
 .card-review {
