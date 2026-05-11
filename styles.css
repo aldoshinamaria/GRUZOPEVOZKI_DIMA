@@ -1072,8 +1072,9 @@ section:not(.hero) {
 .adv-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px 22px;
-  max-width: 920px;
+  gap: 22px 24px;
+  width: 100%;
+  max-width: min(960px, 100%);
   margin: 0 auto;
 }
 
@@ -1082,12 +1083,9 @@ section:not(.hero) {
   gap: 18px;
   align-items: flex-start;
   padding: 22px 22px 22px 20px;
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  box-shadow: var(--shadow-xs);
   text-align: left;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent);
   transition:
     transform 0.32s var(--ease),
     box-shadow 0.32s var(--ease),
@@ -1095,9 +1093,7 @@ section:not(.hero) {
 }
 
 .adv-item:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(14, 61, 92, 0.14);
+  border-left-color: var(--accent-hover);
 }
 
 .adv-index {
