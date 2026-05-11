@@ -122,6 +122,31 @@
       color: var(--accent-2);
     }
 
+    .logo-graphic {
+      display: inline-flex;
+      align-items: center;
+      line-height: 0;
+      flex-shrink: 0;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-graphic:focus-visible {
+      outline: 2px solid var(--accent-2);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
+    .logo-img {
+      display: block;
+      height: 48px;
+      width: auto;
+      max-width: min(280px, 58vw);
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -1551,10 +1576,12 @@
     }
   </style>
 </head>
-<body>
+<body id="top">
   <header>
     <div class="container nav">
-      <div class="logo">Грузоперевозки<span class="logo-sep">|</span><span class="logo-accent">Дмитрий</span></div>
+      <a href="#top" class="logo logo-link logo-graphic" aria-label="Грузоперевозки Дмитрий — в начало страницы">
+        <img src="логотип.png" alt="" width="280" height="84" class="logo-img" decoding="async">
+      </a>
       <nav class="nav-links">
         <a href="#about">О машине</a>
         <a href="#cases">Когда звонят</a>

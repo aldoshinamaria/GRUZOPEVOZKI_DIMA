@@ -152,6 +152,42 @@ header.is-scrolled {
   color: var(--accent);
 }
 
+.logo-graphic {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo-img {
+  display: block;
+  height: 44px;
+  width: auto;
+  max-width: min(280px, 56vw);
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: var(--shadow-xs);
+}
+
+.logo-graphic:focus-visible .logo-img {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    height: 38px;
+    max-width: min(240px, 62vw);
+  }
+
+  .logo-img--footer {
+    height: 34px;
+    max-width: 200px;
+  }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -2235,21 +2271,19 @@ h3.contact-side-title {
   gap: 10px;
 }
 
-.footer-logo {
-  font-size: 17px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text);
+.footer-logo-link {
+  align-self: flex-start;
 }
 
-.footer-logo .logo-sep {
-  color: var(--muted);
-  font-weight: 600;
-  margin: 0 0.06em;
+.footer-logo-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 
-.footer-logo .logo-accent {
-  color: var(--accent);
+.logo-img--footer {
+  height: 40px;
+  max-width: 220px;
 }
 
 .footer-tagline {
