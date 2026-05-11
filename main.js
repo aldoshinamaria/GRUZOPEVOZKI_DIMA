@@ -1,5 +1,5 @@
 /**
- * Интерактив лендинга: анимации, навигация, форма отзыва.
+ * Интерактив лендинга: анимации, навигация, блок отзыва (статусы в ВК).
  * Подключается с index.html; политика CSP: script-src 'self'.
  */
 (function () {
@@ -132,21 +132,19 @@
   var reviewForm = document.getElementById("review-form");
   if (reviewForm) {
     var ratingInput = document.getElementById("review-rating");
-    var ratingError = document.getElementById("review-rating-error");
     var statusEl = document.getElementById("review-form-status");
     var starButtons = reviewForm.querySelectorAll(".review-form-star");
     var currentRating = 0;
 
     function setRating(n) {
       currentRating = n;
-      ratingInput.value = n ? String(n) : "";
+      if (ratingInput) ratingInput.value = n ? String(n) : "";
       starButtons.forEach(function (btn) {
         var v = +btn.getAttribute("data-value");
         var on = v <= currentRating;
         btn.classList.toggle("is-active", on);
         btn.setAttribute("aria-pressed", on ? "true" : "false");
       });
-      if (ratingError) ratingError.hidden = true;
     }
 
     starButtons.forEach(function (btn) {
@@ -155,157 +153,27 @@
       });
     });
 
-    function removeFallback() {
-      var fb = reviewForm.querySelector(".review-form-fallback");
-      if (fb) fb.remove();
-    }
-
-    function showFallback(composed, shortMsg) {
-      statusEl.classList.add("is-error");
-      statusEl.textContent = shortMsg || "";
-      removeFallback();
-      var wrap = document.createElement("div");
-      wrap.className = "review-form-fallback";
-      var hint = document.createElement("p");
-      hint.innerHTML =
-        "<strong>Ваш отзыв</strong> — скопируйте и отправьте в " +
-        '<a class="link-inline" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a> или в Max.';
-      wrap.appendChild(hint);
-      var ta = document.createElement("textarea");
-      ta.className = "review-form-fallback-ta";
-      ta.rows = 6;
-      ta.readOnly = true;
-      ta.value = composed;
-      wrap.appendChild(ta);
-      var copyBtn = document.createElement("button");
-      copyBtn.type = "button";
-      copyBtn.className = "btn btn-secondary btn-sm";
-      copyBtn.textContent = "Скопировать текст";
-      copyBtn.addEventListener("click", function () {
-        function done() {
-          copyBtn.textContent = "Готово";
+    var vkBtn = document.getElementById("review-vk-btn");
+    var consentEl = document.getElementById("review-consent");
+    if (vkBtn && consentEl && statusEl) {
+      vkBtn.addEventListener("click", function (e) {
+        if (!consentEl.checked) {
+          e.preventDefault();
+          statusEl.classList.add("is-error");
+          statusEl.textContent =
+            "Отметьте согласие в чекбоксе или откройте текст документа по ссылке «согласием на обработку…» выше.";
+          consentEl.focus();
+          return;
         }
-        ta.select();
-        ta.setSelectionRange(0, 99999);
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(composed).then(done).catch(function () {
-            document.execCommand("copy");
-            done();
-          });
-        } else {
-          document.execCommand("copy");
-          done();
+        statusEl.classList.remove("is-error");
+        statusEl.textContent = "";
+      });
+      consentEl.addEventListener("change", function () {
+        if (consentEl.checked) {
+          statusEl.classList.remove("is-error");
+          statusEl.textContent = "";
         }
       });
-      wrap.appendChild(copyBtn);
-      var vk = document.createElement("a");
-      vk.href = "https://vk.ru/aldoshin2013";
-      vk.target = "_blank";
-      vk.rel = "noopener noreferrer";
-      vk.className = "btn btn-primary btn-sm";
-      vk.textContent = "Открыть ВКонтакте";
-      wrap.appendChild(vk);
-      var maxA = document.createElement("a");
-      maxA.href =
-        "https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk";
-      maxA.target = "_blank";
-      maxA.rel = "noopener noreferrer";
-      maxA.className = "btn btn-secondary btn-sm";
-      maxA.textContent = "Написать в Max";
-      wrap.appendChild(maxA);
-      reviewForm.appendChild(wrap);
     }
-
-    reviewForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      statusEl.textContent = "";
-      statusEl.classList.remove("is-error");
-      removeFallback();
-
-      var honey = reviewForm.querySelector('[name="botcheck"]');
-      if (honey && String(honey.value || "").trim() !== "") return;
-
-      if (!ratingInput.value) {
-        if (ratingError) ratingError.hidden = false;
-        return;
-      }
-
-      if (!reviewForm.checkValidity()) {
-        reviewForm.reportValidity();
-        return;
-      }
-
-      var submitBtn = reviewForm.querySelector(".review-form-submit");
-      var accessKeyInput = reviewForm.querySelector('[name="access_key"]');
-      var key = accessKeyInput && accessKeyInput.value ? accessKeyInput.value.trim() : "";
-
-      var nameEl = reviewForm.querySelector('[name="name"]');
-      var cityEl = reviewForm.querySelector('[name="city"]');
-      var messageEl = reviewForm.querySelector('[name="message"]');
-      var name = nameEl ? nameEl.value : "";
-      var city = cityEl ? cityEl.value : "";
-      var message = messageEl ? messageEl.value : "";
-      var rating = ratingInput.value;
-
-      var composed =
-        "Имя: " + name.trim() + "\nОценка: " + rating + " из 5";
-      if (city.trim()) composed += "\nГород: " + city.trim();
-      composed += "\n\n" + message.trim();
-
-      var fd = new FormData(reviewForm);
-      fd.set("message", composed);
-      fd.set("from_name", name.trim());
-      fd.delete("name");
-      fd.delete("city");
-      fd.delete("rating");
-      fd.delete("consent");
-      fd.delete("botcheck");
-
-      submitBtn.disabled = true;
-
-      if (!key) {
-        submitBtn.disabled = false;
-        showFallback(
-          composed,
-          "Чтобы отзывы приходили на почту, вставьте бесплатный ключ с web3forms.com в скрытое поле access_key в коде страницы."
-        );
-        return;
-      }
-
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: fd,
-        credentials: "omit",
-        mode: "cors",
-        referrerPolicy: "strict-origin-when-cross-origin",
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error("HTTP " + res.status);
-          var ct = (res.headers.get("content-type") || "").toLowerCase();
-          if (ct.indexOf("application/json") === -1) throw new Error("not json");
-          return res.json();
-        })
-        .then(function (data) {
-          if (data.success) {
-            statusEl.classList.remove("is-error");
-            statusEl.textContent =
-              "Спасибо! Отзыв отправлен. После проверки он может быть опубликован на сайте.";
-            reviewForm.reset();
-            setRating(0);
-            removeFallback();
-          } else {
-            throw new Error(data.message || "fail");
-          }
-        })
-        .catch(function () {
-          showFallback(
-            composed,
-            "Не удалось отправить автоматически. Скопируйте текст ниже или напишите вручную."
-          );
-        })
-        .finally(function () {
-          submitBtn.disabled = false;
-        });
-    });
   }
 })();
