@@ -153,12 +153,36 @@
       });
     });
 
-    var vkBtn = document.getElementById("review-vk-btn");
+    var maxBtn = document.getElementById("review-max-btn");
     var consentEl = document.getElementById("review-consent");
-    if (vkBtn && consentEl && statusEl) {
-      vkBtn.addEventListener("click", function (e) {
+
+    function buildReviewMessage() {
+      var nameEl = document.getElementById("review-name");
+      var cityEl = document.getElementById("review-city");
+      var messageEl = document.getElementById("review-text");
+      var name = nameEl ? String(nameEl.value || "").trim() : "";
+      var city = cityEl ? String(cityEl.value || "").trim() : "";
+      var message = messageEl ? String(messageEl.value || "").trim() : "";
+      var rating = ratingInput ? String(ratingInput.value || "").trim() : "";
+      var lines = ["Отзыв с сайта грузоперевозки (Обнинск, Дмитрий Алдошин)"];
+
+      if (name) lines.push("Имя: " + name);
+      if (rating) lines.push("Оценка: " + rating + " из 5");
+      if (city) lines.push("Город: " + city);
+      lines.push("");
+      if (message) {
+        lines.push(message);
+      } else {
+        lines.push("(текст отзыва можно дописать в MAX перед отправкой)");
+      }
+      lines.push("");
+      lines.push("— отправлено через форму на сайте");
+      return lines.join("\n");
+    }
+
+    if (maxBtn && consentEl && statusEl) {
+      maxBtn.addEventListener("click", function () {
         if (!consentEl.checked) {
-          e.preventDefault();
           statusEl.classList.add("is-error");
           statusEl.textContent =
             "Отметьте согласие в чекбоксе или откройте текст документа по ссылке «согласием на обработку…» выше.";
@@ -166,7 +190,15 @@
           return;
         }
         statusEl.classList.remove("is-error");
-        statusEl.textContent = "";
+        var body = buildReviewMessage();
+        var shareUrl = "https://max.ru/:share?text=" + encodeURIComponent(body);
+        var win = window.open(shareUrl, "_blank", "noopener,noreferrer");
+        if (!win) {
+          window.location.href = shareUrl;
+        }
+        statusEl.classList.remove("is-error");
+        statusEl.textContent =
+          "Откройте MAX и выберите чат с Дмитрием Алдошиным, затем отправьте сообщение (текст уже в поле ввода).";
       });
       consentEl.addEventListener("change", function () {
         if (consentEl.checked) {

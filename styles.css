@@ -1297,12 +1297,17 @@ section:not(.hero) {
   margin: 0;
 }
 
-a.review-form-submit {
+a.review-form-submit,
+button.review-form-submit {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
   text-decoration: none;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
 }
 
 .review-form-submit:hover {
@@ -1315,7 +1320,7 @@ a.review-form-submit {
   transform: none;
 }
 
-.review-form-vk-ico {
+.review-form-max-ico {
   flex-shrink: 0;
 }
 
