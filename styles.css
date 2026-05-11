@@ -695,7 +695,7 @@ section:not(.hero) {
   width: 100%;
   min-height: 280px;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: 58% center;
 }
 
 .driver-copy h2 {
