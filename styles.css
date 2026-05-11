@@ -1471,6 +1471,25 @@ button.review-form-submit {
   font-weight: 600;
 }
 
+.review-card-stars {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 0 12px;
+  color: var(--accent);
+}
+
+.review-card-stars svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  opacity: 0.92;
+}
+
+.card-review .review-meta {
+  margin-bottom: 8px;
+}
+
 .card-review {
   padding: 26px 22px;
   text-align: left;
