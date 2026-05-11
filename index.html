@@ -312,10 +312,13 @@
               <p class="review-form-lead">Отзыв появится на сайте после короткой проверки. Нам важно, как прошла перевозка и общение — это помогает другим заказчикам.</p>
             </header>
             <form id="review-form" class="review-form" novalidate>
-              <!-- Ключ web3forms.com (бесплатно): после регистрации вставьте в value ниже, и отзывы будут приходить на почту -->
+              <!-- Ключ web3forms.com — вставьте в value ниже -->
               <input type="hidden" name="access_key" value="" />
               <input type="hidden" name="subject" value="Отзыв с сайта — грузоперевозки Обнинск" />
-              <input type="checkbox" name="botcheck" class="review-form-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="review-form-honey" aria-hidden="true">
+                <label for="review-bot-field">Оставьте пустым</label>
+                <input id="review-bot-field" type="text" name="botcheck" tabindex="-1" autocomplete="off" value="" />
+              </div>
 
               <div class="review-form-row">
                 <div class="review-form-field">
@@ -328,45 +331,54 @@
                 </div>
               </div>
 
-              <fieldset class="review-form-field review-form-field--rating">
-                <legend class="review-form-label--upper">Оценка</legend>
-                <div class="review-form-stars" role="radiogroup" aria-label="Оценка от 1 до 5 звёзд">
+              <div class="review-form-rating review-form-field">
+                <p class="review-form-label--upper" id="review-rating-label">Оценка</p>
+                <div class="review-form-stars" role="radiogroup" aria-labelledby="review-rating-label">
                   <button type="button" class="review-form-star" data-value="1" aria-label="1 из 5" aria-pressed="false">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   </button>
                   <button type="button" class="review-form-star" data-value="2" aria-label="2 из 5" aria-pressed="false">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   </button>
                   <button type="button" class="review-form-star" data-value="3" aria-label="3 из 5" aria-pressed="false">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   </button>
                   <button type="button" class="review-form-star" data-value="4" aria-label="4 из 5" aria-pressed="false">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   </button>
                   <button type="button" class="review-form-star" data-value="5" aria-label="5 из 5" aria-pressed="false">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   </button>
                 </div>
                 <input type="hidden" name="rating" id="review-rating" value="" />
-                <p class="review-form-field-error" id="review-rating-error" hidden>Выберите оценку звёздами.</p>
-              </fieldset>
-
-              <div class="review-form-field">
-                <label for="review-text">Текст отзыва <span class="review-form-hint">(минимум 20 символов)</span></label>
-                <textarea id="review-text" name="message" required minlength="20" rows="5" placeholder="Маршрут, что перевозили, как прошла погрузка и общение с водителем"></textarea>
+                <p class="review-form-field-error" id="review-rating-error" hidden>Выберите оценку, нажав на звёзды.</p>
               </div>
 
-              <label class="review-form-consent">
-                <input type="checkbox" name="consent" value="yes" required />
-                <span>Согласен с <a class="link-inline" href="#contacts">обработкой персональных данных</a> для публикации отзыва.</span>
-              </label>
+              <div class="review-form-field review-form-field--message">
+                <label for="review-text">Текст отзыва <span class="review-form-hint">(от 20 символов)</span></label>
+                <textarea id="review-text" name="message" required minlength="20" rows="4" placeholder="Маршрут и груз, как прошла перевозка"></textarea>
+              </div>
 
-              <button type="submit" class="btn btn-primary review-form-submit">
-                <svg class="review-form-send-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Отправить отзыв
-              </button>
-              <p class="review-form-status" id="review-form-status" role="status" aria-live="polite"></p>
+              <div class="review-form-consent">
+                <input type="checkbox" id="review-consent" name="consent" value="yes" required />
+                <label for="review-consent" class="review-form-consent-label">Подтверждаю согласие на <a class="link-inline" href="#privacy-consent">обработку персональных данных</a> для публикации отзыва после проверки.</label>
+              </div>
+
+              <div class="review-form-actions">
+                <button type="submit" class="btn btn-primary review-form-submit">
+                  <svg class="review-form-send-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Отправить отзыв
+                </button>
+                <p class="review-form-status" id="review-form-status" role="status" aria-live="polite"></p>
+              </div>
             </form>
+          </div>
+
+          <div id="privacy-consent" class="review-privacy glass reveal-up d-5">
+            <h4 class="review-privacy-title">Согласие на обработку персональных данных</h4>
+            <p class="review-privacy-text">
+              Отправляя отзыв, вы даёте согласие на обработку указанных данных (имя, при необходимости город, оценка и текст отзыва) исполнителю услуг — Дмитрию Алдошину — для целей размещения отзыва на сайте после модерации. Данные используются только в этих целях и не передаются третьим лицам, за исключением технического сервиса отправки формы на электронную почту, если вы настроили ключ на <a class="link-inline" href="https://web3forms.com" target="_blank" rel="noopener noreferrer">web3forms.com</a>. Отозвать согласие можно, связавшись с исполнителем в разделе <a class="link-inline" href="#contacts">«Контакты»</a>.
+            </p>
           </div>
         </div>
       </div>
@@ -685,7 +697,7 @@
           removeFallback();
 
           var honey = reviewForm.querySelector('[name="botcheck"]');
-          if (honey && honey.checked) return;
+          if (honey && String(honey.value || "").trim() !== "") return;
 
           if (!ratingInput.value) {
             if (ratingError) ratingError.hidden = false;
