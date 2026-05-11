@@ -1006,6 +1006,39 @@ section:not(.hero) {
   color: var(--muted);
 }
 
+.reviews-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 440px);
+  gap: 28px 40px;
+  align-items: start;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.reviews-list-col {
+  min-width: 0;
+}
+
+.reviews-form-col {
+  min-width: 0;
+}
+
+.reviews-form-col .review-form-wrap {
+  position: sticky;
+  top: 88px;
+}
+
+.reviews-split .review-form-wrap {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
+}
+
 .review-form-wrap {
   margin-top: 40px;
   max-width: 500px;
@@ -1871,6 +1904,21 @@ h3.contact-side-title {
 @media (max-width: 980px) {
   .nav-links {
     display: none;
+  }
+
+  .reviews-split {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .reviews-form-col .review-form-wrap {
+    position: static;
+  }
+
+  .reviews-split .review-form-wrap {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .grid-3,
