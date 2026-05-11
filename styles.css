@@ -408,6 +408,12 @@ header.is-scrolled {
   max-width: 36rem;
 }
 
+.hero-desc--note {
+  margin-top: 12px;
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
 .hero-ctas {
   display: flex;
   flex-wrap: wrap;
