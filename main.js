@@ -1,5 +1,5 @@
 /**
- * Интерактив лендинга: анимации, навигация, блок отзыва (статусы в ВК).
+ * Интерактив лендинга: анимации, навигация, отзыв через MAX.
  * Подключается с index.html; политика CSP: script-src 'self'.
  */
 (function () {
@@ -192,8 +192,10 @@
         statusEl.classList.remove("is-error");
         var body = buildReviewMessage();
         var shareUrl = "https://max.ru/:share?text=" + encodeURIComponent(body);
-        var win = window.open(shareUrl, "_blank", "noopener,noreferrer");
-        if (!win) {
+        var win = window.open(shareUrl, "_blank");
+        if (win) {
+          win.opener = null;
+        } else {
           window.location.href = shareUrl;
         }
         statusEl.classList.remove("is-error");

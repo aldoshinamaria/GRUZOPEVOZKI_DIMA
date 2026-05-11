@@ -1024,6 +1024,7 @@ section:not(.hero) {
 }
 
 .reviews-form-col {
+  display: block;
   min-width: 0;
 }
 
