@@ -7,7 +7,7 @@
   <title>Грузоперевозки из Обнинска — Дмитрий Алдошин, Газель до 2,5 т</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -304,14 +304,70 @@
           </div>
         </div>
 
-        <div id="leave-review" class="review-cta-banner glass reveal-up d-4">
-          <div class="review-cta-banner__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <div id="leave-review" class="review-form-wrap reveal-up d-4">
+          <div class="review-form-card glass">
+            <header class="review-form-head">
+              <p class="review-form-kicker">Оставить отзыв</p>
+              <h3 class="review-form-title">Поделитесь опытом</h3>
+              <p class="review-form-lead">Отзыв появится на сайте после короткой проверки. Нам важно, как прошла перевозка и общение — это помогает другим заказчикам.</p>
+            </header>
+            <form id="review-form" class="review-form" novalidate>
+              <!-- Ключ web3forms.com (бесплатно): после регистрации вставьте в value ниже, и отзывы будут приходить на почту -->
+              <input type="hidden" name="access_key" value="" />
+              <input type="hidden" name="subject" value="Отзыв с сайта — грузоперевозки Обнинск" />
+              <input type="checkbox" name="botcheck" class="review-form-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <div class="review-form-row">
+                <div class="review-form-field">
+                  <label for="review-name">Ваше имя</label>
+                  <input id="review-name" name="name" type="text" required autocomplete="name" placeholder="Как к вам обращаться" />
+                </div>
+                <div class="review-form-field">
+                  <label for="review-city">Город <span class="review-form-opt">(необязательно)</span></label>
+                  <input id="review-city" name="city" type="text" autocomplete="address-level2" placeholder="Например, Обнинск" />
+                </div>
+              </div>
+
+              <fieldset class="review-form-field review-form-field--rating">
+                <legend class="review-form-label--upper">Оценка</legend>
+                <div class="review-form-stars" role="radiogroup" aria-label="Оценка от 1 до 5 звёзд">
+                  <button type="button" class="review-form-star" data-value="1" aria-label="1 из 5" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </button>
+                  <button type="button" class="review-form-star" data-value="2" aria-label="2 из 5" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </button>
+                  <button type="button" class="review-form-star" data-value="3" aria-label="3 из 5" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </button>
+                  <button type="button" class="review-form-star" data-value="4" aria-label="4 из 5" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </button>
+                  <button type="button" class="review-form-star" data-value="5" aria-label="5 из 5" aria-pressed="false">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  </button>
+                </div>
+                <input type="hidden" name="rating" id="review-rating" value="" />
+                <p class="review-form-field-error" id="review-rating-error" hidden>Выберите оценку звёздами.</p>
+              </fieldset>
+
+              <div class="review-form-field">
+                <label for="review-text">Текст отзыва <span class="review-form-hint">(минимум 20 символов)</span></label>
+                <textarea id="review-text" name="message" required minlength="20" rows="5" placeholder="Маршрут, что перевозили, как прошла погрузка и общение с водителем"></textarea>
+              </div>
+
+              <label class="review-form-consent">
+                <input type="checkbox" name="consent" value="yes" required />
+                <span>Согласен с <a class="link-inline" href="#contacts">обработкой персональных данных</a> для публикации отзыва.</span>
+              </label>
+
+              <button type="submit" class="btn btn-primary review-form-submit">
+                <svg class="review-form-send-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Отправить отзыв
+              </button>
+              <p class="review-form-status" id="review-form-status" role="status" aria-live="polite"></p>
+            </form>
           </div>
-          <div class="review-cta-banner__copy">
-            <strong class="review-cta-banner__title">Оставить отзыв</strong><span class="review-cta-banner__text"> — пара строк о перевозке в ВК.</span>
-          </div>
-          <a class="btn btn-secondary btn-sm review-cta-banner__btn" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">В ВК</a>
         </div>
       </div>
     </section>
@@ -534,6 +590,180 @@
       };
       activateNav();
       window.addEventListener("scroll", activateNav, { passive: true });
+
+      var reviewForm = document.getElementById("review-form");
+      if (reviewForm) {
+        var ratingInput = document.getElementById("review-rating");
+        var ratingError = document.getElementById("review-rating-error");
+        var statusEl = document.getElementById("review-form-status");
+        var starButtons = reviewForm.querySelectorAll(".review-form-star");
+        var currentRating = 0;
+
+        function setRating(n) {
+          currentRating = n;
+          ratingInput.value = n ? String(n) : "";
+          starButtons.forEach(function (btn) {
+            var v = +btn.getAttribute("data-value");
+            var on = v <= currentRating;
+            btn.classList.toggle("is-active", on);
+            btn.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+          if (ratingError) ratingError.hidden = true;
+        }
+
+        starButtons.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            setRating(+btn.getAttribute("data-value"));
+          });
+        });
+
+        function removeFallback() {
+          var fb = reviewForm.querySelector(".review-form-fallback");
+          if (fb) fb.remove();
+        }
+
+        function showFallback(composed, shortMsg) {
+          statusEl.classList.add("is-error");
+          statusEl.textContent = shortMsg || "";
+          removeFallback();
+          var wrap = document.createElement("div");
+          wrap.className = "review-form-fallback";
+          var hint = document.createElement("p");
+          hint.innerHTML =
+            "<strong>Ваш отзыв</strong> — скопируйте и отправьте в " +
+            '<a class="link-inline" href="https://vk.ru/aldoshin2013" target="_blank" rel="noopener noreferrer">ВКонтакте</a> или в Max.';
+          wrap.appendChild(hint);
+          var ta = document.createElement("textarea");
+          ta.className = "review-form-fallback-ta";
+          ta.rows = 6;
+          ta.readOnly = true;
+          ta.value = composed;
+          wrap.appendChild(ta);
+          var copyBtn = document.createElement("button");
+          copyBtn.type = "button";
+          copyBtn.className = "btn btn-secondary btn-sm";
+          copyBtn.textContent = "Скопировать текст";
+          copyBtn.addEventListener("click", function () {
+            function done() {
+              copyBtn.textContent = "Готово";
+            }
+            ta.select();
+            ta.setSelectionRange(0, 99999);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(composed).then(done).catch(function () {
+                document.execCommand("copy");
+                done();
+              });
+            } else {
+              document.execCommand("copy");
+              done();
+            }
+          });
+          wrap.appendChild(copyBtn);
+          var vk = document.createElement("a");
+          vk.href = "https://vk.ru/aldoshin2013";
+          vk.target = "_blank";
+          vk.rel = "noopener noreferrer";
+          vk.className = "btn btn-primary btn-sm";
+          vk.textContent = "Открыть ВКонтакте";
+          wrap.appendChild(vk);
+          var maxA = document.createElement("a");
+          maxA.href =
+            "https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk";
+          maxA.target = "_blank";
+          maxA.rel = "noopener noreferrer";
+          maxA.className = "btn btn-secondary btn-sm";
+          maxA.textContent = "Написать в Max";
+          wrap.appendChild(maxA);
+          reviewForm.appendChild(wrap);
+        }
+
+        reviewForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          statusEl.textContent = "";
+          statusEl.classList.remove("is-error");
+          removeFallback();
+
+          var honey = reviewForm.querySelector('[name="botcheck"]');
+          if (honey && honey.checked) return;
+
+          if (!ratingInput.value) {
+            if (ratingError) ratingError.hidden = false;
+            return;
+          }
+
+          if (!reviewForm.checkValidity()) {
+            reviewForm.reportValidity();
+            return;
+          }
+
+          var submitBtn = reviewForm.querySelector(".review-form-submit");
+          var accessKeyInput = reviewForm.querySelector('[name="access_key"]');
+          var key = accessKeyInput && accessKeyInput.value ? accessKeyInput.value.trim() : "";
+
+          var nameEl = reviewForm.querySelector('[name="name"]');
+          var cityEl = reviewForm.querySelector('[name="city"]');
+          var messageEl = reviewForm.querySelector('[name="message"]');
+          var name = nameEl ? nameEl.value : "";
+          var city = cityEl ? cityEl.value : "";
+          var message = messageEl ? messageEl.value : "";
+          var rating = ratingInput.value;
+
+          var composed =
+            "Имя: " + name.trim() + "\nОценка: " + rating + " из 5";
+          if (city.trim()) composed += "\nГород: " + city.trim();
+          composed += "\n\n" + message.trim();
+
+          var fd = new FormData(reviewForm);
+          fd.set("message", composed);
+          fd.set("from_name", name.trim());
+          fd.delete("name");
+          fd.delete("city");
+          fd.delete("rating");
+          fd.delete("consent");
+          fd.delete("botcheck");
+
+          submitBtn.disabled = true;
+
+          if (!key) {
+            submitBtn.disabled = false;
+            showFallback(
+              composed,
+              "Чтобы отзывы приходили на почту, вставьте бесплатный ключ с web3forms.com в скрытое поле access_key в коде страницы."
+            );
+            return;
+          }
+
+          fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: fd,
+          })
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              if (data.success) {
+                statusEl.classList.remove("is-error");
+                statusEl.textContent =
+                  "Спасибо! Отзыв отправлен. После проверки он может быть опубликован на сайте.";
+                reviewForm.reset();
+                setRating(0);
+                removeFallback();
+              } else {
+                throw new Error(data.message || "fail");
+              }
+            })
+            .catch(function () {
+              showFallback(
+                composed,
+                "Не удалось отправить автоматически. Скопируйте текст ниже или напишите вручную."
+              );
+            })
+            .finally(function () {
+              submitBtn.disabled = false;
+            });
+        });
+      }
     })();
   </script>
 </body>
