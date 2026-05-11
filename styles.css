@@ -930,12 +930,16 @@ section:not(.hero) {
 
 .truck-work-caption {
   margin: 0;
-  padding: 0 4px;
-  font-size: 14px;
+  padding: 14px 12px 0 12px;
+  font-size: 13px;
   font-weight: 600;
-  line-height: 1.45;
-  color: var(--text-secondary);
-  letter-spacing: -0.01em;
+  line-height: 1.5;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  border-left: 2px solid rgba(14, 61, 92, 0.22);
+  margin-left: 2px;
+  margin-top: 2px;
+  max-width: 38rem;
 }
 
 .truck-work-photos .truck-work-shot:last-child .truck-work-frame {
