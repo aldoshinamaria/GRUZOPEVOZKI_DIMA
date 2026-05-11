@@ -226,4 +226,54 @@
       });
     }
   }
+
+  var truckDialog = document.getElementById("truck-lightbox");
+  if (truckDialog) {
+    var truckLbImg = truckDialog.querySelector(".truck-lightbox-img");
+    var truckLbCap = truckDialog.querySelector(".truck-lightbox-caption");
+    var truckLbClose = truckDialog.querySelector(".truck-lightbox-close");
+    var truckLastFocus = null;
+
+    function closeTruckLb() {
+      if (truckDialog.open) {
+        truckDialog.close();
+      }
+    }
+
+    function openTruckLb(src, alt, caption) {
+      if (!truckLbImg || !src) return;
+      truckLbImg.src = src;
+      truckLbImg.alt = alt || "";
+      if (truckLbCap) truckLbCap.textContent = caption || "";
+      if (typeof truckDialog.showModal === "function") {
+        truckDialog.showModal();
+      } else {
+        var w = window.open(src, "_blank", "noopener,noreferrer");
+        if (w) w.opener = null;
+      }
+    }
+
+    document.querySelectorAll("[data-truck-lightbox]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var img = btn.querySelector("img");
+        if (!img) return;
+        truckLastFocus = btn;
+        openTruckLb(
+          img.getAttribute("src") || "",
+          img.getAttribute("alt") || "",
+          btn.getAttribute("data-caption") || ""
+        );
+      });
+    });
+
+    if (truckLbClose) {
+      truckLbClose.addEventListener("click", closeTruckLb);
+    }
+
+    truckDialog.addEventListener("close", function () {
+      if (truckLastFocus && typeof truckLastFocus.focus === "function") {
+        truckLastFocus.focus();
+      }
+    });
+  }
 })();

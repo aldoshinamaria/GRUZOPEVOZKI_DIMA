@@ -190,15 +190,19 @@
         <p class="section-lead reveal-up d-1">Задняя, боковая и верхняя погрузка. До 13 европалет и 2500 кг.</p>
         <div class="truck-work-photos">
           <figure class="truck-work-shot reveal-scale d-2">
-            <div class="truck-work-frame">
-              <img src="машина вид спереди.png" alt="Газель Дмитрия в работе — вид спереди" width="1200" height="900" loading="lazy" decoding="async">
-            </div>
+            <button type="button" class="truck-work-trigger" data-truck-lightbox data-caption="Спереди: удобный заезд под погрузку и рабочая высота кузова" aria-label="Открыть фото крупно: вид спереди Газели">
+              <span class="truck-work-frame">
+                <img src="машина вид спереди.png" alt="Газель Дмитрия в работе — вид спереди" width="1200" height="900" loading="lazy" decoding="async">
+              </span>
+            </button>
             <figcaption class="truck-work-caption">Спереди: удобный заезд под погрузку и рабочая высота кузова</figcaption>
           </figure>
           <figure class="truck-work-shot reveal-scale d-3">
-            <div class="truck-work-frame">
-              <img src="машина вид сзади.png" alt="Газель Дмитрия в работе — вид сзади" width="1200" height="900" loading="lazy" decoding="async">
-            </div>
+            <button type="button" class="truck-work-trigger" data-truck-lightbox data-caption="Сзади: задняя и боковая погрузка через ворота, аккуратное крепление груза" aria-label="Открыть фото крупно: вид сзади Газели">
+              <span class="truck-work-frame">
+                <img src="машина вид сзади.png" alt="Газель Дмитрия в работе — вид сзади" width="1200" height="900" loading="lazy" decoding="async">
+              </span>
+            </button>
             <figcaption class="truck-work-caption">Сзади: задняя и боковая погрузка через ворота, аккуратное крепление груза</figcaption>
           </figure>
         </div>
@@ -556,6 +560,15 @@
       Дмитрий Алдошин · грузоперевозки на Газели · точные сроки и честные условия
     </div>
   </footer>
+  <dialog id="truck-lightbox" class="truck-lightbox" aria-label="Просмотр фотографии Газели">
+    <div class="truck-lightbox-inner">
+      <button type="button" class="truck-lightbox-close" aria-label="Закрыть">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <img class="truck-lightbox-img" src="машина вид спереди.png" alt="" width="1200" height="900">
+      <p class="truck-lightbox-caption"></p>
+    </div>
+  </dialog>
   <script src="main.js" defer></script>
 </body>
 </html>

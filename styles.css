@@ -887,11 +887,11 @@ section:not(.hero) {
 
 .truck-work-photos {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 28px 32px;
-  max-width: 1040px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 28px;
+  max-width: 720px;
   margin: 0 auto;
-  align-items: start;
+  align-items: stretch;
 }
 
 .truck-work-shot {
@@ -899,14 +899,38 @@ section:not(.hero) {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
+}
+
+.truck-work-trigger {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: zoom-in;
+  text-align: left;
+  border-radius: var(--radius);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.truck-work-trigger:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
 }
 
 .truck-work-frame {
+  display: block;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-img);
   background: var(--surface-2);
+  aspect-ratio: 4 / 3;
+  max-height: min(240px, 42vw);
+  margin-inline: auto;
   transition:
     box-shadow 0.4s var(--ease-soft),
     transform 0.45s var(--ease-soft);
@@ -920,6 +944,9 @@ section:not(.hero) {
 .truck-work-frame img {
   display: block;
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   filter: var(--img-filter);
   transition: transform 0.65s var(--ease-soft);
 }
@@ -930,29 +957,107 @@ section:not(.hero) {
 
 .truck-work-caption {
   margin: 0;
-  padding: 14px 12px 0 12px;
-  font-size: 13px;
+  padding: 10px 12px 0 12px;
+  font-size: 12px;
   font-weight: 600;
   line-height: 1.5;
   color: var(--muted);
   letter-spacing: 0.01em;
   border-left: 2px solid rgba(14, 61, 92, 0.22);
   margin-left: 2px;
-  margin-top: 2px;
-  max-width: 38rem;
+  max-width: none;
 }
 
-.truck-work-photos .truck-work-shot:last-child .truck-work-frame {
-  margin-top: clamp(28px, 5vw, 64px);
+/* Lightbox: фото Газели */
+
+.truck-lightbox {
+  padding: 0;
+  border: none;
+  width: min(96vw, 1040px);
+  max-height: 96vh;
+  background: transparent;
+  margin: auto;
+}
+
+.truck-lightbox::backdrop {
+  background: rgba(12, 17, 29, 0.76);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.truck-lightbox-inner {
+  position: relative;
+  padding: 20px 18px 18px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+
+.truck-lightbox-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-xs);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.truck-lightbox-close:hover {
+  background: var(--accent-soft);
+  border-color: rgba(14, 61, 92, 0.2);
+  color: var(--accent);
+}
+
+.truck-lightbox-close:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.truck-lightbox-img {
+  display: block;
+  width: 100%;
+  max-height: min(82vh, 900px);
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-xs);
+  background: var(--surface-2);
+}
+
+.truck-lightbox-caption {
+  margin: 14px 0 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: var(--text-secondary);
+}
+
+.truck-lightbox-caption:empty {
+  display: none;
 }
 
 @media (max-width: 900px) {
   .truck-work-photos {
     grid-template-columns: 1fr;
+    max-width: 400px;
   }
 
-  .truck-work-photos .truck-work-shot:last-child .truck-work-frame {
-    margin-top: 0;
+  .truck-work-frame {
+    max-height: min(260px, 58vw);
   }
 }
 
