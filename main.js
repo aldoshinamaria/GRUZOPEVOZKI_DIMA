@@ -155,6 +155,9 @@
 
     var maxBtn = document.getElementById("review-max-btn");
     var consentEl = document.getElementById("review-consent");
+    /** Тот же профиль MAX, что и кнопки «Написать в Max» на сайте (личный чат). */
+    var maxReviewChatUrl =
+      "https://max.ru/u/f9LHodD0cOK017RyHOv7-yJKGVO9RTJ48qBQtrNakn1WfJn8NyTjKH566Zk";
 
     function buildReviewMessage() {
       var nameEl = document.getElementById("review-name");
@@ -191,16 +194,29 @@
         }
         statusEl.classList.remove("is-error");
         var body = buildReviewMessage();
-        var shareUrl = "https://max.ru/:share?text=" + encodeURIComponent(body);
-        var win = window.open(shareUrl, "_blank");
+        /* :share?text= открывает экран «Кому отправить», а не личку — поэтому открываем прямой чат и копируем текст. */
+        var win = window.open(maxReviewChatUrl, "_blank");
         if (win) {
           win.opener = null;
         } else {
-          window.location.href = shareUrl;
+          window.location.href = maxReviewChatUrl;
         }
-        statusEl.classList.remove("is-error");
-        statusEl.textContent =
-          "Откройте MAX и выберите чат с Дмитрием Алдошиным, затем отправьте сообщение (текст уже в поле ввода).";
+        var okClipboard =
+          "Открылся личный чат с Дмитрием в новой вкладке. Текст отзыва скопирован в буфер — вставьте его в поле сообщения (Ctrl+V или «Вставить» на телефоне) и отправьте.";
+        var failClipboard =
+          "Открылся личный чат с Дмитрием. Скопируйте текст отзыва из поля «Текст отзыва» выше и вставьте в сообщение в MAX.";
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(body)
+            .then(function () {
+              statusEl.textContent = okClipboard;
+            })
+            .catch(function () {
+              statusEl.textContent = failClipboard;
+            });
+        } else {
+          statusEl.textContent = failClipboard;
+        }
       });
       consentEl.addEventListener("change", function () {
         if (consentEl.checked) {
