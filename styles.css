@@ -2077,6 +2077,11 @@ button.review-form-submit {
 .calculator-section {
   padding-top: 88px;
   padding-bottom: 88px;
+  scroll-margin-top: calc(84px + env(safe-area-inset-top, 0px));
+}
+
+#calc-card {
+  scroll-margin-top: calc(84px + env(safe-area-inset-top, 0px));
 }
 
 .calculator-section .section-head {

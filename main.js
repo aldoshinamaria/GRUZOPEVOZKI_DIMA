@@ -58,7 +58,50 @@
     }, 2200);
   }
 
+  function scrollToCalculator(focusInput) {
+    var card = document.getElementById("calc-card");
+    var section = document.getElementById("calculator");
+    var target = card || section;
+    if (!target) return;
+
+    var headerH = header ? header.offsetHeight : 80;
+    var offset = headerH + 20;
+    var top =
+      target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: smoothBehavior,
+    });
+
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, "", "#calculator");
+    } else {
+      window.location.hash = "calculator";
+    }
+
+    highlightCalculator();
+
+    if (focusInput !== false) {
+      var calcFrom = document.getElementById("calc-from");
+      if (calcFrom) {
+        window.setTimeout(function () {
+          calcFrom.focus({ preventScroll: true });
+        }, reduceMotion ? 0 : 450);
+      }
+    }
+  }
+
+  document.querySelectorAll(".calc-scroll-link, a[href='#calculator']").forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      scrollToCalculator(true);
+    });
+  });
+
   document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    if (link.classList.contains("calc-scroll-link")) return;
+    if (link.getAttribute("href") === "#calculator") return;
     link.addEventListener("click", function (e) {
       var href = link.getAttribute("href");
       if (!href || href === "#" || href.length < 2) return;
@@ -66,11 +109,14 @@
       if (!target) return;
       e.preventDefault();
       target.scrollIntoView({ behavior: smoothBehavior, block: "start" });
-      if (href === "#calculator") {
-        highlightCalculator();
-      }
     });
   });
+
+  if (window.location.hash === "#calculator") {
+    window.setTimeout(function () {
+      scrollToCalculator(true);
+    }, 120);
+  }
 
   function animateCount(el) {
     var target = +el.dataset.count;
@@ -551,8 +597,7 @@
       });
     }
 
-    calcForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+    function runCalc() {
       hideCalcResult();
       setCalcStatus("");
 
@@ -630,12 +675,33 @@
             setCalcStatus("Не удалось рассчитать маршрут. Попробуйте позже.", true);
           }
         })
-        .finally(function () {
+        .then(function () {
           if (calcSubmit) {
             calcSubmit.disabled = false;
             calcSubmit.textContent = "Рассчитать стоимость";
           }
         });
+    }
+
+    calcForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      runCalc();
+    });
+
+    if (calcSubmit) {
+      calcSubmit.addEventListener("click", runCalc);
+    }
+
+    [calcFrom, calcTo].forEach(function (input) {
+      if (!input) return;
+      input.addEventListener("keydown", function (e) {
+        if (e.key !== "Enter") return;
+        var wrap = input.closest(".calc-autocomplete");
+        var list = wrap ? wrap.querySelector(".calc-suggestions") : null;
+        if (list && !list.hidden && list.children.length) return;
+        e.preventDefault();
+        runCalc();
+      });
     });
   }
 })();
