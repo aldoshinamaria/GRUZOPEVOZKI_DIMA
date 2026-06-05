@@ -7,7 +7,7 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://nominatim.openstreetmap.org https://router.project-osrm.org; script-src 'self'; object-src 'none'; upgrade-insecure-requests">
   <title>Грузоперевозки из Обнинска — Дмитрий Алдошин, Газель до 2,5 т</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,7 +49,7 @@
             Межгород — <span class="count-up" data-count="55" data-prefix="от " data-suffix=" ₽/км"></span>.
           </p>
           <div class="hero-ctas">
-            <a class="btn btn-primary pulse-soft" href="#contacts">Рассчитать стоимость</a>
+            <a class="btn btn-primary pulse-soft" href="#calculator">Рассчитать стоимость</a>
             <a class="btn btn-secondary" href="tel:+79533135505">Позвонить</a>
           </div>
           <ul class="hero-micro">
@@ -252,7 +252,7 @@
             </div>
             <h3>Переезды и личные вещи</h3>
             <p>Квартирные и офисные переезды. Спокойная погрузка и доставка без лишней суеты.</p>
-            <a class="btn btn-primary btn-sm" href="#contacts">Рассчитать стоимость</a>
+            <a class="btn btn-primary btn-sm" href="#calculator">Рассчитать стоимость</a>
           </article>
           <article class="card glass service-card reveal-scale d-2">
             <div class="service-icon" aria-hidden="true">
@@ -260,7 +260,7 @@
             </div>
             <h3>Товар, паллеты, поставки</h3>
             <p>Магазины, склады, небольшие партии. Один исполнитель — без цепочки посредников.</p>
-            <a class="btn btn-primary btn-sm" href="#contacts">Рассчитать стоимость</a>
+            <a class="btn btn-primary btn-sm" href="#calculator">Рассчитать стоимость</a>
           </article>
           <article class="card glass service-card reveal-scale d-3">
             <div class="service-icon" aria-hidden="true">
@@ -268,7 +268,7 @@
             </div>
             <h3>Дальние маршруты</h3>
             <p>Межгород и нестандартные направления, в том числе новые регионы. Дисциплина и уверенное вождение.</p>
-            <a class="btn btn-primary btn-sm" href="#contacts">Рассчитать стоимость</a>
+            <a class="btn btn-primary btn-sm" href="#calculator">Рассчитать стоимость</a>
           </article>
         </div>
       </div>
@@ -487,6 +487,90 @@
       </div>
     </section>
 
+    <section id="calculator" class="calculator-section section-band">
+      <div class="container">
+        <div class="section-head reveal-up">
+          <h2 class="section-title">Рассчитайте стоимость перевозки</h2>
+          <p class="section-lead">Укажите маршрут и получите предварительную стоимость перевозки.</p>
+        </div>
+        <div class="calc-card glass reveal-up d-1" id="calc-card">
+          <form id="calc-form" class="calc-form" novalidate>
+            <div class="calc-fields">
+              <div class="calc-field">
+                <label for="calc-from">Откуда</label>
+                <div class="calc-autocomplete">
+                  <input
+                    id="calc-from"
+                    name="from"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Например, Обнинск"
+                    aria-describedby="calc-from-hint"
+                    required
+                  >
+                  <p class="calc-sr-only" id="calc-from-hint">Начните вводить название — появятся подсказки населённых пунктов</p>
+                  <ul id="calc-from-list" class="calc-suggestions" hidden></ul>
+                </div>
+              </div>
+              <div class="calc-field">
+                <label for="calc-to">Куда</label>
+                <div class="calc-autocomplete">
+                  <input
+                    id="calc-to"
+                    name="to"
+                    type="text"
+                    autocomplete="off"
+                    placeholder="Например, Калуга"
+                    aria-describedby="calc-to-hint"
+                    required
+                  >
+                  <p class="calc-sr-only" id="calc-to-hint">Начните вводить название — появятся подсказки населённых пунктов</p>
+                  <ul id="calc-to-list" class="calc-suggestions" hidden></ul>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary calc-submit" id="calc-submit-btn">
+              Рассчитать стоимость
+            </button>
+            <p class="calc-status" id="calc-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div id="calc-result" class="calc-result" hidden>
+            <div class="calc-result-card">
+              <div class="calc-result-row">
+                <span class="calc-result-label">Маршрут</span>
+                <strong class="calc-result-route" id="calc-result-route"></strong>
+              </div>
+              <div class="calc-result-row">
+                <span class="calc-result-label">Расстояние</span>
+                <strong class="calc-result-distance" id="calc-result-distance"></strong>
+              </div>
+              <div class="calc-result-price-block">
+                <span class="calc-result-label">Предварительная стоимость</span>
+                <strong class="calc-result-price" id="calc-result-price"></strong>
+              </div>
+              <p class="calc-result-note">
+                Расчёт является предварительным. Точная стоимость зависит от особенностей маршрута, объёма груза, времени ожидания и условий погрузки.
+              </p>
+              <ul class="calc-trust-list">
+                <li>Работаем ежедневно</li>
+                <li>До 2500 кг груза</li>
+                <li>До 32 м³ объёма кузова</li>
+                <li>Перевозки по Калужской области и России</li>
+              </ul>
+              <a
+                class="btn btn-primary calc-result-cta"
+                id="calc-vk-btn"
+                href="https://vk.ru/aldoshin2013"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Получить точный расчёт</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contacts">
       <div class="container contact-wrap">
         <div class="contact-box glass reveal-left">
@@ -546,6 +630,7 @@
           <a href="#services">Услуги</a>
           <a href="#truck-work">Газель в работе</a>
           <a href="#reviews">Отзывы</a>
+          <a href="#calculator">Расчёт</a>
           <a href="#contacts">Контакты</a>
         </nav>
       </div>
